@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css">
+		<link rel="stylesheet" href="css/style.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<form class="" action="index.html" method="post">
+				<div class="slides">
+					<section>
+						<!-- <img src="log.png" alt="logo"> -->
+						<h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo fuga quia similique asperiores, maxime impedit beatae rem atque deleniti molestias deserunt neque debitis? Iste, quam amet tenetur quaerat quidem exercitationem!</h4>
+						<div class="btn-group">
+							<input onclick="mostrar()" class="input-hidden" type="radio" name="pregunta1" id="opc1" value="10">
+							<label for="opc1">
+								<img src="assets/img/d.png" alt="">
+							</label>
+							<input class="input-hidden" type="radio" name="pregunta1" id="opc2" value="8">
+							<label for="opc2">
+								<img src="" alt="">
+							</label>
+							<input class="input-hidden" type="radio" name="pregunta1" id="opc3" value="6">
+							<input class="input-hidden" type="radio" name="pregunta1" id="opc4" value="4">
+							<input class="input-hidden" type="radio" name="pregunta1" id="opc5" value="2">
+						</div>
+					</section>
+					<section>Slide 2</section>
+					<section>Slide 3</section>
+					<section>Slide 4</section>
+					<section>Slide 5</section>
+					<section>Slide 6</section>
+					<section>Slide 7</section>
+				</div>
+			</form>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+
+		<script>
+			function mostrar(){
+				var valor = document.getElementById('opc1');
+				var control = document.getElementsByClassName('navigate-right');
+				console.log(valor.value);
+				console.log(control);
+				console.log(control);
+				console.log(control);
+			}
+		</script>
+	</body>
+</html>
