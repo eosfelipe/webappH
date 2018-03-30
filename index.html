@@ -6,8 +6,7 @@
 
 		<title>WebApp</title>
 
-		<!--Bootstrap-->
-		<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/solarized.css">
@@ -31,31 +30,40 @@
 				<div class="slides">
 					<section>
 						<h3>Orden de servicio</h3>
-						<input class="form-control" type="number" name="ordenServicio" id="ordenServicio" required onkeypress="verEvento(event)">
+						<input class="input-field" type="number" name="ordenServicio" id="ordenServicio" required onkeypress="iniciar(event)">
 					</section>
 					<section>
-						<!-- <img src="log.png" alt="logo"> -->
-						<h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo fuga quia similique asperiores, maxime impedit beatae rem atque deleniti molestias deserunt neque debitis? Iste, quam amet tenetur quaerat quidem exercitationem!</h3>
+						<div class="container">
+							<div class="row">
+								<div class="col l4">
+									<span id="atendiendo"></span>
+								</div>
+								<div class="col l4 offset-l4">
+									<img src="assets/img/logo.png" alt="logo">
+								</div>
+							</div>
+						</div>
+						<h3>¿Cómo califica la atención y actitud de su asesor de servicio?</h3>
 						<div class="btn-group">
-							<input onclick="mostrar(event)" class="input-hidden" type="radio" name="pregunta1" id="opc1" value="10">
+							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta1" id="opc1" value="10">
 							<label for="opc1">
-								<img src="assets/img/d.png" alt="">
+								<img src="assets/img/cal10.png" alt="">
 							</label>
-							<input onclick="mostrar(event)" class="input-hidden" type="radio" name="pregunta1" id="opc2" value="8">
+							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta1" id="opc2" value="8">
 							<label for="opc2">
-								<img src="assets/img/d.png" alt="">
+								<img src="assets/img/cal8.png" alt="">
 							</label>
-							<input onclick="mostrar(event)" class="input-hidden" type="radio" name="pregunta1" id="opc3" value="6">
+							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta1" id="opc3" value="6">
 							<label for="opc3">
-								<img src="assets/img/d.png" alt="">
+								<img src="assets/img/cal6.png" alt="">
 							</label>
-							<input onclick="mostrar(event)" class="input-hidden" type="radio" name="pregunta1" id="opc4" value="4">
+							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta1" id="opc4" value="4">
 							<label for="opc4">
-								<img src="assets/img/d.png" alt="">
+								<img src="assets/img/cal4.png" alt="">
 							</label>
-							<input onclick="mostrar(event)" class="input-hidden" type="radio" name="pregunta1" id="opc5" value="2">
+							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta1" id="opc5" value="2">
 							<label for="opc5">
-								<img src="assets/img/d.png" alt="">
+								<img src="assets/img/cal2.png" alt="">
 							</label>
 						</div>
 					</section>
@@ -72,8 +80,11 @@
 
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
+
+		</script>
 		<script src="js/main.js"></script>
-		
+
 
 		<script>
 			// More info about config & dependencies:

@@ -21,3 +21,13 @@ input[type=radio]:checked + label>img {
   rotateZ(-10deg)
   rotateX(10deg);
 }
+
+.btn-group img {
+  margin-right: 35px !important;
+}
+
+#ordenServicio {
+  font-size: 1.55em;
+  width: 20%;
+  text-align: center;
+}
