@@ -27,7 +27,7 @@ input[type=radio]:checked + label>img {
 }
 
 #ordenServicio {
-  font-size: 1.55em;
+  font-size: 1.25em;
   width: 20%;
   text-align: center;
 }
