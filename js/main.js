@@ -13,11 +13,16 @@ function iniciar(e){
   if(e.charCode == 13){
     e.preventDefault();
     var numOrden = document.getElementById('ordenServicio');
-    var atendiendo = document.getElementById("atendiendo");
-    agregarLocal('numOrden',numOrden);
-    $('#os').show();
-    atendiendo.innerHTML = obtenerLocal('numOrden');
-    Reveal.navigateRight();
+    if(numOrden.value.length <= 0){
+      swal("Favor de insertar su número de servicio", "", "warning");
+    }
+    else{
+      var atendiendo = document.getElementById("atendiendo");
+      agregarLocal('numOrden',numOrden);
+      $('#os').show();
+      atendiendo.innerHTML = obtenerLocal('numOrden');
+      Reveal.navigateRight();
+    }
   }
   else{
     console.log('no es enter');
