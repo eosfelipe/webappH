@@ -1,21 +1,18 @@
 <?php
-// $numero = count($_POST);
-// $tags = array_keys($_POST); // obtiene los nombres de las varibles
-// $valores = array_values($_POST);// obtiene los valores de las varibles
-//
-// print_r($numero);
-// print_r($tags);
-// print_r($valores);
-//
-// // crea las variables y les asigna el valor
-// for($i=0;$i<$numero;$i++){
-// $$tags[$i]=$valores[$i];
-// }
+$numero = count($_POST);
+$tags = array_keys($_POST); // obtiene los nombres de las varibles
+$valores = array_values($_POST);// obtiene los valores de las varibles
 
-if(isset($_POST['ordenServicio'])){
-  echo 'ok';
+// crea las variables y les asigna el valor
+for($i=0;$i<$numero;$i++){
+$$tags[$i]=$valores[$i];
+echo json_encode($$tags[$i]);
 }
-else{
-  echo 'fallo';
-}
+
+// if(isset($_POST['ordenServicio'])){
+//   echo 'ok';
+// }
+// else{
+//   echo 'fallo';
+// }
 ?>
