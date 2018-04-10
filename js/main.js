@@ -46,7 +46,8 @@ function insertarBD(datos){
   var jqxhr = $.ajax({
     data: datos,
     method: 'POST',
-    url: 'accion.php'
+    url: 'backend/codeigniter/index.php'
+    // url: 'accion.php'
   })
   .done(function(response){
     console.log(response);

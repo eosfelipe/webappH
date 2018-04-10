@@ -20,6 +20,12 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		if(isset($_POST['ordenServicio'])){
+			$this->load->view('welcome_message');
+		  // echo 'ok';
+		}
+		else{
+		  echo 'fallo';
+		}
 	}
 }
