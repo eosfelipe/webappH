@@ -10,7 +10,8 @@ function siguiente(e){
   Reveal.navigateRight();
 }
 function iniciar(e){
-  if(e.charCode == 13){
+  var charCode = e.charCode || e.keyCode || e.wich; //para chrome y firefox
+  if(charCode == 13){
     e.preventDefault();
     var numOrden = document.getElementById('ordenServicio');
     if(numOrden.value.length <= 0){
@@ -32,8 +33,14 @@ function iniciar(e){
 function finalizar(){
   $('#ordenForm').submit(function(event){
     event.preventDefault();
-    var respuestas = $('#ordenForm').serialize();
-    insertarBD(respuestas);
+    var respuestas = $(this); //$('#ordenForm').serializeArray();
+    if(validarForm(respuestas)){
+      console.log(respuestas);
+      insertarBD(respuestas);
+    }
+    else{
+      swal("Favor de respoder todas las preguntas", "", "warning");
+    }
     // setTimeout(function(){
     //   console.log('estamos en el timeout');
     //   location.reload()
@@ -41,12 +48,27 @@ function finalizar(){
   });
 }
 
+function validarForm(r){
+  const radio = r.querySelectorAll('input[type=radio]:checked');
+  if(radio.length < 7){
+    return false;
+  }
+  else{
+    return true;
+  }
+}
+
 function insertarBD(datos){
-  console.log(datos);
+  // console.log(datos.data());
+  // if(datos.data('locked') != undefined && !datos.data('locked')){
+  //   console.log('locked');
+  // }
   var jqxhr = $.ajax({
-    data: datos,
+    data: datos.serialize(),
+    beforeSend: function(){datos.data('locked',true);},
     method: 'POST',
-    url: 'backend/codeigniter/index.php'
+    url: 'backend/codeigniter/index.php',
+    complete: function(){datos.data('locked',false);}
     // url: 'accion.php'
   })
   .done(function(response){
@@ -54,7 +76,8 @@ function insertarBD(datos){
     if(response == 'ok'){
       swal("¡Gracias por su tiempo!", "", "success")
       .then(function(){
-        location.reload();
+        console.log('window.location.reload()')
+        window.location.reload();
       })
     }
   })
@@ -64,6 +87,7 @@ function insertarBD(datos){
   .always(function(){
     eliminarLocal('numOrden');
     console.log('localStorage eliminado');
+    $('#ordenForm').each(function(){this.reset();});//para limpiar firefox
   })
 }
 

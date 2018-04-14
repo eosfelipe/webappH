@@ -12,13 +12,16 @@ class Calificacion extends CI_Controller {
   public function index(){
     if(isset($_POST['ordenServicio'])){
       $ordenS = $this->Calificacion_model->set_data( $_POST );
-      if($ordenS){
+      if(is_object($ordenS)){
         $respuesta = $ordenS->insert();
         if( $respuesta['err'] ){
           echo 'mal';
         }else{
           echo 'ok';
         }
+      }
+      else{
+        'Tiene campos null';
       }
     }
     else{
