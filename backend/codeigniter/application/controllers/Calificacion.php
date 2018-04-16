@@ -10,7 +10,7 @@ class Calificacion extends CI_Controller {
   }
 
   public function index(){
-    if(isset($_POST['ordenServicio'])){
+    if(isset($_POST['ordenServicio'])){ //solo peticiones ajax desde la app
       $ordenS = $this->Calificacion_model->set_data( $_POST );
       if(is_object($ordenS)){
         $respuesta = $ordenS->insert();
@@ -25,7 +25,8 @@ class Calificacion extends CI_Controller {
       }
     }
     else{
-      echo 'No existe Orden de servicio';
+      // echo '<pre>No existe orden de servicio</pre>';
+      show_404();
     }
   }
 
