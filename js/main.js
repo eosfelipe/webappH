@@ -30,26 +30,40 @@ function iniciar(e){
   }
 }
 
-function finalizar(){
-  $('#ordenForm').submit(function(event){
-    event.preventDefault();
-    var respuestas = $(this); //$('#ordenForm').serializeArray();
-    if(validarForm(respuestas)){
-      console.log(respuestas);
+// function finalizar(){
+//   $('#ordenForm').submit(function(event){
+//     event.preventDefault();
+//     var respuestas = $(this); //$('#ordenForm').serializeArray();
+//     if(validarForm(respuestas)){
+//       console.log('respuestas después de validarForm**************************');
+//       console.log(respuestas);
+//       // insertarBD(respuestas);
+//     }
+//     else{
+//       swal("Favor de respoder todas las preguntas", "", "warning");
+//       console.log('no pasó validarForm****************************************');
+//       console.log(respuestas);
+//       console.log(respuestas[0]);
+//     }
+//   });
+// }
+
+function finalizar(event){
+  var respuestas = $('#ordenForm');
+  if(validarForm(respuestas)){
+    $('#ordenForm').submit(function(event){
+      event.preventDefault(event);
+      console.log('valido');
       insertarBD(respuestas);
-    }
-    else{
-      swal("Favor de respoder todas las preguntas", "", "warning");
-    }
-    // setTimeout(function(){
-    //   console.log('estamos en el timeout');
-    //   location.reload()
-    // },5000);
-  });
+    })
+  }else{
+    swal("Favor de respoder todas las preguntas", "", "warning");
+    event.preventDefault(event);
+  }
 }
 
 function validarForm(r){
-  const radio = r.querySelectorAll('input[type=radio]:checked');
+  const radio = r.find('input[type=radio]:checked');
   if(radio.length < 7){
     return false;
   }
