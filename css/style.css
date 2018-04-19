@@ -3,6 +3,10 @@
   left: -9999px;
 }
 
+.input-visible {
+  
+}
+
 input[type=radio]:checked + label>img {
   border: 1px solid #fff;
   box-shadow: 0 0 3px 3px #586e75;
