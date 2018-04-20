@@ -4,8 +4,22 @@
 }
 
 .input-visible {
-  
+
 }
+
+label > .custom-span {
+  color: #586e75;
+}
+.custom-span {
+  font-size: 2.5rem !important;
+  margin-right: 25px !important;
+}
+
+[type="radio"]+span:before, [type="radio"]+span:after {
+  width: 26px;
+  height: 26px;
+}
+
 
 input[type=radio]:checked + label>img {
   border: 1px solid #fff;
