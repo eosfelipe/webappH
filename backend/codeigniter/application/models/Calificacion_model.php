@@ -15,6 +15,7 @@ class Calificacion_model extends CI_Model {
   public $fecha;
 
   public function set_data( $data ){
+    date_default_timezone_set('America/Mexico_City');
     foreach ($data as $nombre_campo => $valor_campo) {
       if( property_exists('Calificacion_model',$nombre_campo) ){
         $this->$nombre_campo = $valor_campo;
