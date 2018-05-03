@@ -55,6 +55,7 @@ function finalizar(event){
       event.preventDefault(event);
       console.log('valido');
       insertarBD(respuestas);
+      // btnFinalizar.prop('disabled', false);
     })
   }else{
     swal("Favor de respoder todas las preguntas", "", "warning");
@@ -73,10 +74,9 @@ function validarForm(r){
 }
 
 function insertarBD(datos){
-  // console.log(datos.data());
-  // if(datos.data('locked') != undefined && !datos.data('locked')){
-  //   console.log('locked');
-  // }
+  var btnFinalizar = $('#btnFinalizar');
+  btnFinalizar.prop('disabled', true);
+  
   var jqxhr = $.ajax({
     data: datos.serialize(),
     beforeSend: function(){datos.data('locked',true);},
