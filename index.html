@@ -43,7 +43,10 @@
 					</div>
 					<section>
 						<h3>Orden de servicio</h3>
-						<input class="input-field" type="text" name="ordenServicio" id="ordenServicio" required onkeypress="iniciar(event)">
+						<input class="input-field" type="text"
+									 name="ordenServicio" id="ordenServicio"
+									 required onkeypress="iniciar(event)"
+									 placeholder="Ingresar número">
 					</section>
 					<section>
 						<h3>¿Qué tan satisfecho está usted con el servicio de la agencia?</h3>
@@ -266,6 +269,7 @@
 			// - https://github.com/hakimel/reveal.js#configuration
 			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
+				controls: false,
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },

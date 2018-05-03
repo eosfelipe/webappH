@@ -7,7 +7,15 @@ function siguiente(e){
   // console.log(pregunta);
   console.log(e.target.value);
   // console.log(pregunta[0].value);
-  Reveal.navigateRight();
+  if(obtenerLocal('numOrden') == null){
+    swal("No se ha ingresado número de orden","","warning")
+    .then(function(){
+      Reveal.prev();
+    })
+  }
+  else {
+    Reveal.navigateRight();
+  }
 }
 function iniciar(e){
   var charCode = e.charCode || e.keyCode || e.wich; //para chrome y firefox
@@ -66,6 +74,7 @@ function finalizar(event){
 function validarForm(r){
   const radio = r.find('input[type=radio]:checked');
   if(radio.length < 7){
+    Reveal.configure({ controls: true });
     return false;
   }
   else{
@@ -75,11 +84,11 @@ function validarForm(r){
 
 function insertarBD(datos){
   var btnFinalizar = $('#btnFinalizar');
-  btnFinalizar.prop('disabled', true);
-  
+  // btnFinalizar.prop('disabled', true);
+
   var jqxhr = $.ajax({
     data: datos.serialize(),
-    beforeSend: function(){datos.data('locked',true);},
+    beforeSend: function(){btnFinalizar.prop('disabled', true);},
     method: 'POST',
     url: 'backend/codeigniter/index.php',
     complete: function(){datos.data('locked',false);}
