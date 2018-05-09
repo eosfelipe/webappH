@@ -12,7 +12,12 @@ class Home extends CI_Controller {
   }
 
     public function index() {
-        $this->load->view('login/login_view');
+        if ($_SESSION['user_logged'] == FALSE) {
+            $this->session->set_flashdata("error","Please login first to view");
+            redirect('Home/Login');
+        }
+
+        $this->load->view('admin/administracion');
     }
 
     public function Login() {

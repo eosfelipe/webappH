@@ -51,4 +51,23 @@ class Calificacion_model extends CI_Model {
     }
     return $respuesta;
   }
+
+  public function getRegistros(){
+    $query = $this->db->query('select * from calificacion');
+
+    // foreach ($query->result() as $row){
+    //   echo $row->ordenServicio;
+    //   echo $row->p1;
+    //   echo $row->p2;
+    //   echo $row->p3;
+    //   echo $row->p4;
+    //   echo $row->p5;
+    //   echo $row->p6;
+    //   echo $row->p7;
+    //   echo $row->fecha;
+    // }
+    //
+    // echo 'Registros totales: ' . $query->num_rows();
+    return $query->result();
+  }
 }

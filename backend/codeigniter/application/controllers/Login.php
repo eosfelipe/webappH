@@ -5,12 +5,14 @@ class Login extends CI_Controller {
 
     public function loginUsuario() {
 
+        $this->form_validation->set_message('required', 'El campo {field} es necesario {param}.');
+
         $this->form_validation->set_rules('usuario','Usuario','required');
         $this->form_validation->set_rules('password','Password','required');
 
         if ($this->form_validation->run() == FALSE) {
 
-            $this->load->view('login_view');
+            $this->load->view('login/login_view');
 
         } else {
 
@@ -42,7 +44,7 @@ class Login extends CI_Controller {
                     $_SESSION['username'] = $usuario->usuario;
 
                     //redirect
-                    redirect('usuario/profile','refresh');
+                    redirect('admin/index','refresh');
 
                 }
 
@@ -50,7 +52,7 @@ class Login extends CI_Controller {
             } else {
 
                 //wrong credentials
-                $this->session->set_flashdata('error','Usuario o Password invalido');
+                $this->session->set_flashdata('error','Usuario o Password inválido');
                 redirect('home/Login');
 
             }
@@ -60,6 +62,7 @@ class Login extends CI_Controller {
     //logging out of a user
     public function logoutUser() {
 		unset($_SESSION);
-		redirect('Home/Login');
+    session_destroy();
+		redirect('home/Login');
 	}
 }

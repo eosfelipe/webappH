@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="Felipe Escobedo">
-  <title>Admin - Hyundai</title>
+  <title>Login - Hyundai</title>
   <!-- Bootstrap core CSS-->
   <link href="<?php echo base_url()?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom fonts for this template-->
@@ -17,16 +17,16 @@
 <body class="bg-dark">
   <div class="container">
     <div class="card card-login mx-auto mt-5">
-      <div class="card-header">Login</div>
+      <div class="card-header">Iniciar sesión</div>
       <div class="card-body">
 
         <?php echo form_open('Login/loginUsuario') ?>
           <div class="form-group">
-            <label for="usuario">Usuario</label>
+            <!-- <label for="usuario">Usuario</label> -->
             <input class="form-control" id="usuario" name="usuario" type="text" aria-describedby="usuarioHelp" placeholder="Usuario">
           </div>
           <div class="form-group">
-            <label for="password">Password</label>
+            <!-- <label for="password">Password</label> -->
             <input class="form-control" id="password" name="password" type="password" placeholder="Password">
           </div>
 
@@ -61,12 +61,10 @@
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span></button>','</div>');
                         ?>
-
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 
     <!-- Bootstrap core JavaScript-->
