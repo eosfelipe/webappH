@@ -32,8 +32,8 @@
 
           <button type="submit" class="btn btn-primary btn-block">Login</button>
           <div class="text-center">
-            <a class="d-block small mt-3" href="<?php echo site_url('Home/Register') ?>">Register an Account</a>
-            <a class="d-block small" href="forgot-password.html">Forgot Password?</a>
+            <!-- <a class="d-block small mt-3" href="<?php #echo site_url('Home/Register') ?>">Register an Account</a>
+            <a class="d-block small" href="forgot-password.html">Forgot Password?</a> -->
           </div>
         <?php echo form_close() ?>
       </div>

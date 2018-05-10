@@ -14,6 +14,8 @@ class Calificacion_model extends CI_Model {
   public $p7;
   public $fecha;
 
+  public $hoy;
+
   public function set_data( $data ){
     date_default_timezone_set('America/Mexico_City');
     foreach ($data as $nombre_campo => $valor_campo) {
@@ -53,21 +55,15 @@ class Calificacion_model extends CI_Model {
   }
 
   public function getRegistros(){
-    $query = $this->db->query('select * from calificacion');
-
-    // foreach ($query->result() as $row){
-    //   echo $row->ordenServicio;
-    //   echo $row->p1;
-    //   echo $row->p2;
-    //   echo $row->p3;
-    //   echo $row->p4;
-    //   echo $row->p5;
-    //   echo $row->p6;
-    //   echo $row->p7;
-    //   echo $row->fecha;
-    // }
-    //
-    // echo 'Registros totales: ' . $query->num_rows();
+    $this->hoy = date('Y-m-d');
+    // $this->db->like('fecha', $hoy, 'both');
+    $query = $this->db->query('select * from calificacion where fecha like "%'.$this->hoy.'%"');
     return $query->result();
+  }
+
+  public function getRegistrosB($fi,$ff){
+    $query = $this->db->query('select * from calificacion where fecha between "'.$fi.'" and "'.$ff.' 23:59:00"');
+    return $query->result();
+
   }
 }

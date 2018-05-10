@@ -5,31 +5,44 @@ class Admin extends CI_Controller {
 
   public function __construct(){
     parent::__construct();
+    $this->load->library('form_validation');
+    $this->load->library('session');
     $this->load->database();
     $this->load->model('Calificacion_model');
   }
 
   public function index(){
     // $this->load->view('templates/header');
+    if ($_SESSION['user_logged'] == FALSE) {
+        $this->session->set_flashdata("error","Favor de ingresar credenciales");
+        redirect('admin/Login');
+    }
     $data['registros'] = $this->Calificacion_model->getRegistros();
     $this->load->view('admin/administracion',$data);
     // $this->load->view('templates/footer');
   }
 
-  // public function getOrdenesFecha(){
-  //   $data = $this->Calificacion_model->getRegistros();
-  //   return $data;
-  //   // foreach($data as $row){
-  //   //     echo $row['ordenServicio'];
-  //   //     echo $row['p1'];
-  //   //     echo $row['p2'];
-  //   //     echo $row['p3'];
-  //   //     echo $row['p4'];
-  //   //     echo $row['p5'];
-  //   //     echo $row['p6'];
-  //   //     echo $row['p7'];
-  //   //     echo $row['fecha'];
-  //   //   }
-  //   //   echo 'Registros totales: ' . $query->num_rows();
-  // }
+  public function Login() {
+      $this->load->view('login/login_view');
+  }
+
+  public function BuscarFecha(){
+    if(isset($_POST['fechaInicial']) && isset($_POST['fechaFinal'])){
+      //voletea fecha para mysql
+      $fechaInicial = date('Y-m-d',strtotime($_POST['fechaInicial']));
+      $fechaFinal = date('Y-m-d',strtotime($_POST['fechaFinal']));
+
+      $data['registros'] = $this->Calificacion_model->getRegistrosB($fechaInicial,$fechaFinal);
+      $data['fi'] = $_POST['fechaInicial'];
+      $data['ff'] = $_POST['fechaFinal'];
+      $this->load->view('admin/administracion',$data);
+    }
+    else{
+      $data['registros'] = $this->Calificacion_model->getRegistros();
+      $this->load->view('admin/administracion',$data);
+    }
+  }
+
+
+
 }

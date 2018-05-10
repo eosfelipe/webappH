@@ -16,19 +16,20 @@
   <link href="<?php echo base_url()?>assets/datatables/buttons.dataTables.min.css" rel="stylesheet">
   <!-- Custom styles for this template-->
   <link href="<?php echo base_url()?>assets/css/sb-admin.css" rel="stylesheet">
+  <link href="<?php echo base_url()?>assets/css/bootstrap-datepicker.min.css" rel="stylesheet">
 </head>
 
-<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<body class="fixed-nav sticky-footer bg-dark sidenav-toggled" id="page-top">
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="index.html">Hyundai</a>
+    <a class="navbar-brand" href="<?php echo site_url('admin/index') ?>">Hyundai</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" href="<?php echo site_url('admin/index') ?>">
             <i class="fa fa-fw fa-dashboard"></i>
             <span class="nav-link-text">Dashboard</span>
           </a>
@@ -42,7 +43,7 @@
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item dropdown">
+        <!-- <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-fw fa-envelope"></i>
             <span class="d-lg-none">Messages
@@ -118,23 +119,19 @@
             <div class="dropdown-divider"></div>
             <a class="dropdown-item small" href="#">View all alerts</a>
           </div>
-        </li>
-        <li class="nav-item">
-          <form class="form-inline my-2 my-lg-0 mr-lg-2">
-            <div class="input-group">
-              <input class="form-control" type="text" placeholder="Search for...">
-              <span class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fa fa-search"></i>
-                </button>
-              </span>
-            </div>
-          </form>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
-            <?php echo $_SESSION['username'];?>
-            <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+        </li> -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle mr-lg-2" id="usuarioDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <?php if(isset($_SESSION['username'])) echo 'Bienvenido '.$_SESSION['username'];?>
+          <i class="fa fa-fw fa-user"></i>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="usuarioDropdown">
+          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModal">
+            <span class="text-muted">
+              <strong><i class="fa fa-fw fa-sign-out"></i>Salir</strong>
+            </span>
+          </a>
+          </div>
         </li>
       </ul>
     </div>
@@ -151,7 +148,23 @@
       <!-- Example DataTables Card-->
       <div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-table"></i> Ordenes de servicio</div>
+          <!-- <i class="fa fa-table"></i> Ordenes de servicio del <?php #echo date('d').' de mayo'?> -->
+          <div class="row" id="sandbox-container">
+            <div class="col-md-4 offset-md-8">
+
+            <?php echo form_open('admin/BuscarFecha') ?>
+            <div class="input-daterange input-group input-group-sm mb-3" id="datepicker">
+              <strong style="padding-right: 20px;">Fecha: </strong>
+              <input type="text" class="form-control" name="fechaInicial" value="<?php echo isset($fi) ? $fi : date('d-m-Y')?>">
+              <span class="input-group-addon">a</span>
+              <input type="text" class="form-control" name="fechaFinal" value="<?php echo isset($ff) ? $ff : date('d-m-Y')?>">
+              <button type="submit" class="btn btn-primary btn-sm">Aceptar</button>
+            </div>
+            <?php echo form_close() ?>
+
+            </div>
+          </div>
+        </div>
         <div class="card-body">
           <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -223,15 +236,15 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Cerrar sesión</h5>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <!-- <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div> -->
           <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="<?php echo site_url('Login/logoutUser') ?>">Logout</a>
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+            <a class="btn btn-primary" href="<?php echo site_url('Login/logoutUser') ?>">Aceptar</a>
           </div>
         </div>
       </div>
@@ -249,6 +262,9 @@
     <!-- Custom scripts for this page-->
     <script src="<?php echo base_url()?>assets/js/sb-admin-datatables.min.js"></script>
     <script src="<?php echo base_url()?>assets/js/dataTables.buttons.min.js"></script>
+    <script src="<?php echo base_url()?>assets/js/bootstrap-datepicker.min.js"></script>
+    <script src="<?php echo base_url()?>assets/js/bootstrap-datepicker.es.min.js"></script>
+    <script src="<?php echo base_url()?>assets/js/main.js"></script>
   </div>
 </body>
 

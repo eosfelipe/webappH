@@ -53,7 +53,7 @@ class Login extends CI_Controller {
 
                 //wrong credentials
                 $this->session->set_flashdata('error','Usuario o Password inválido');
-                redirect('home/Login');
+                redirect('admin/Login');
 
             }
         }
@@ -63,6 +63,6 @@ class Login extends CI_Controller {
     public function logoutUser() {
 		unset($_SESSION);
     session_destroy();
-		redirect('home/Login');
+		redirect('admin/Login');
 	}
 }
