@@ -1,0 +1,16 @@
+#datepicker label {
+  margin-right: 8px;
+}
+#datepicker input {
+  border-radius: 5px;
+}
+#datepicker span {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+#datepicker button {
+  margin-left: 8px;
+}
+#datepicker a {
+  margin-left: 8px;
+}

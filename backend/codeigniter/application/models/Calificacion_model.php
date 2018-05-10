@@ -82,6 +82,7 @@ class Calificacion_model extends CI_Model {
     }
     else{
       force_download('./assets/reportes/'.$nombre_archivo, NULL);
+      // redirect('admin/index','refresh');
       return true;
     }
   }

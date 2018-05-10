@@ -49,6 +49,9 @@ class Admin extends CI_Controller {
       $fechaInicial = date('Y-m-d',strtotime($_POST['fechaInicial']));
       $fechaFinal = date('Y-m-d',strtotime($_POST['fechaFinal']));
 
+      $_SESSION['fi'] = $fechaInicial;
+      $_SESSION['ff'] = $fechaFinal;
+
       $res = $this->Calificacion_model->exportar($fechaInicial,$fechaFinal);
       if($res){
         $this->session->set_flashdata("success","<strong>¡Archivo exportado!</strong>");
@@ -60,7 +63,17 @@ class Admin extends CI_Controller {
       }
     }
     else{
-      $res = $this->Calificacion_model->exportar();
+      if(isset($_GET['e'])){
+        $res = $this->Calificacion_model->exportar($_SESSION['fi'],$_SESSION['ff']);
+        if($res){
+          $this->session->set_flashdata("success","<strong>¡Archivo exportado!</strong>");
+          redirect('admin/index');
+        }
+        else{
+          $this->session->set_flashdata("error","Algo salió mal, archivo no exportado");
+          redirect('admin/index');
+        }
+      }
     }
   }
 

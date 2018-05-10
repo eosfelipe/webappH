@@ -17,6 +17,7 @@
   <!-- Custom styles for this template-->
   <link href="<?php echo base_url()?>assets/css/sb-admin.css" rel="stylesheet">
   <link href="<?php echo base_url()?>assets/css/bootstrap-datepicker.min.css" rel="stylesheet">
+  <link href="<?php echo base_url()?>assets/css/styles.css" rel="stylesheet">
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark sidenav-toggled" id="page-top">
@@ -159,26 +160,27 @@
         </li>
         <li class="breadcrumb-item active">Ordenes de servicio</li>
       </ol>
+      <div class="row" id="sandbox-container">
+        <div class="col-md-4 offset-md-8">
+        <?php echo form_open('admin/BuscarFecha') ?>
+        <div class="form-group">
+          <div class="input-daterange input-group input-group-sm mb-3" id="datepicker">
+            <!-- <strong style="padding-right: 20px;">Fecha: </strong> -->
+            <label for="f">Fecha: </label>
+            <input type="text" class="form-control" name="fechaInicial" value="<?php echo isset($fi) ? $fi : date('d-m-Y')?>">
+            <span class="input-group-addon">a</span>
+            <input type="text" class="form-control" name="fechaFinal" value="<?php echo isset($ff) ? $ff : date('d-m-Y')?>">
+            <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-fw fa-search"></i></button>
+            <a class="btn btn-primary btn-sm" href="#" data-toggle="modal" data-target="#exportarModal"><i class="fa fa-fw fa-file-excel-o"></i></a>
+          </div>
+        </div>
+        <?php echo form_close() ?>
+        </div>
+      </div>
       <!-- Example DataTables Card-->
       <div class="card mb-3">
         <div class="card-header">
           <!-- <i class="fa fa-table"></i> Ordenes de servicio del <?php #echo date('d').' de mayo'?> -->
-          <div class="row" id="sandbox-container">
-            <div class="col-md-6 offset-md-6">
-
-            <?php echo form_open('admin/BuscarFecha') ?>
-            <div class="input-daterange input-group input-group-sm mb-3" id="datepicker">
-              <strong style="padding-right: 20px;">Fecha: </strong>
-              <input type="text" class="form-control" name="fechaInicial" value="<?php echo isset($fi) ? $fi : date('d-m-Y')?>">
-              <span class="input-group-addon">a</span>
-              <input type="text" class="form-control" name="fechaFinal" value="<?php echo isset($ff) ? $ff : date('d-m-Y')?>">
-              <button type="submit" class="btn btn-primary btn-sm">Buscar</button>
-              <?php echo anchor('admin/Exportar','Exportar')?>
-            </div>
-            <?php echo form_close() ?>
-
-            </div>
-          </div>
         </div>
         <div class="card-body">
           <div class="table-responsive">
@@ -261,6 +263,35 @@
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
             <a class="btn btn-primary" href="<?php echo site_url('Login/logoutUser') ?>">Aceptar</a>
           </div>
+        </div>
+      </div>
+    </div>
+    <!-- Exportar Modal-->
+    <div class="modal fade" id="exportarModal" tabindex="-1" role="dialog" aria-labelledby="exportarModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content" id="datePM">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exportarModalLabel">Exportar registros</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <?php echo form_open('admin/Exportar') ?>
+          <div class="modal-body">
+            <div class="form-group">
+              <div class="input-daterange input-group input-group-sm mb-3" id="datepicker">
+                <label for="f">Fecha: </label>
+                <input type="text" class="form-control" name="fechaInicial" value="<?php echo isset($fi) ? $fi : date('d-m-Y')?>">
+                <span class="input-group-addon">a</span>
+                <input type="text" class="form-control" name="fechaFinal" value="<?php echo isset($ff) ? $ff : date('d-m-Y')?>">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Aceptar</button>
+          </div>
+          <?php echo form_close() ?>
         </div>
       </div>
     </div>

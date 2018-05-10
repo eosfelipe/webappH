@@ -6,4 +6,12 @@ $('#sandbox-container .input-daterange').datepicker({
     autoclose: true,
     todayHighlight: true
 });
+$('#datePM .input-daterange').datepicker({
+    format: "dd-mm-yyyy",
+    todayBtn: "linked",
+    language: "es",
+    orientation: "bottom auto",
+    autoclose: true,
+    todayHighlight: true
+});
 $('.alert').alert();
