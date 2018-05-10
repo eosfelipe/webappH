@@ -63,20 +63,7 @@ class Admin extends CI_Controller {
       }
     }
     else{
-      if(isset($_GET['e'])){
-        $res = $this->Calificacion_model->exportar($_SESSION['fi'],$_SESSION['ff']);
-        if($res){
-          $this->session->set_flashdata("success","<strong>¡Archivo exportado!</strong>");
-          redirect('admin/index');
-        }
-        else{
-          $this->session->set_flashdata("error","Algo salió mal, archivo no exportado");
-          redirect('admin/index');
-        }
-      }
+      //No hay else siempre llega $_POST
     }
   }
-
-
-
 }
