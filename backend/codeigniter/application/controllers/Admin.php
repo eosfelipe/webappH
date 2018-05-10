@@ -43,6 +43,27 @@ class Admin extends CI_Controller {
     }
   }
 
+  public function Exportar(){
+    if(isset($_POST['fechaInicial']) && isset($_POST['fechaFinal'])){
+      //voletea fecha para mysql
+      $fechaInicial = date('Y-m-d',strtotime($_POST['fechaInicial']));
+      $fechaFinal = date('Y-m-d',strtotime($_POST['fechaFinal']));
+
+      $res = $this->Calificacion_model->exportar($fechaInicial,$fechaFinal);
+      if($res){
+        $this->session->set_flashdata("success","<strong>¡Archivo exportado!</strong>");
+        redirect('admin/index');
+      }
+      else{
+        $this->session->set_flashdata("error","Algo salió mal, archivo no exportado");
+        redirect('admin/index');
+      }
+    }
+    else{
+      $res = $this->Calificacion_model->exportar();
+    }
+  }
+
 
 
 }

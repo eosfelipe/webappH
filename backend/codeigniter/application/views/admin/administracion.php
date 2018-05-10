@@ -138,6 +138,20 @@
   </nav>
   <div class="content-wrapper">
     <div class="container-fluid">
+      <div class="row">
+        <div class="col align-self-center">
+
+          <?php if ($this->session->flashdata('success')) {?>
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+                  <?php echo $this->session->flashdata('success'); ?>
+              </div>
+          <?php  } ?>
+
+        </div>
+      </div>
       <!-- Breadcrumbs-->
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
@@ -150,7 +164,7 @@
         <div class="card-header">
           <!-- <i class="fa fa-table"></i> Ordenes de servicio del <?php #echo date('d').' de mayo'?> -->
           <div class="row" id="sandbox-container">
-            <div class="col-md-4 offset-md-8">
+            <div class="col-md-6 offset-md-6">
 
             <?php echo form_open('admin/BuscarFecha') ?>
             <div class="input-daterange input-group input-group-sm mb-3" id="datepicker">
@@ -158,7 +172,8 @@
               <input type="text" class="form-control" name="fechaInicial" value="<?php echo isset($fi) ? $fi : date('d-m-Y')?>">
               <span class="input-group-addon">a</span>
               <input type="text" class="form-control" name="fechaFinal" value="<?php echo isset($ff) ? $ff : date('d-m-Y')?>">
-              <button type="submit" class="btn btn-primary btn-sm">Aceptar</button>
+              <button type="submit" class="btn btn-primary btn-sm">Buscar</button>
+              <?php echo anchor('admin/Exportar','Exportar')?>
             </div>
             <?php echo form_close() ?>
 

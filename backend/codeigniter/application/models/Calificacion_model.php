@@ -64,6 +64,25 @@ class Calificacion_model extends CI_Model {
   public function getRegistrosB($fi,$ff){
     $query = $this->db->query('select * from calificacion where fecha between "'.$fi.'" and "'.$ff.' 23:59:00"');
     return $query->result();
+  }
 
+  public function exportar($fi,$ff){
+    $this->load->dbutil();
+    $this->load->helper('file');
+    $this->load->helper('download');
+    $query = $this->db->query('select * from calificacion where fecha between "'.$fi.'" and "'.$ff.' 23:59:00"');
+    $delimiter = ",";
+    $newline = "\r\n";
+    $enclosure = '"';
+    $nombre_archivo = 'resultados_'.$fi.'_'.$ff.'.csv';
+
+    $archivo = $this->dbutil->csv_from_result($query, $delimiter, $newline, $enclosure);
+    if(!write_file('./assets/reportes/'.$nombre_archivo,$archivo)){
+      return false;
+    }
+    else{
+      force_download('./assets/reportes/'.$nombre_archivo, NULL);
+      return true;
+    }
   }
 }
