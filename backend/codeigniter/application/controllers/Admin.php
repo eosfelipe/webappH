@@ -22,6 +22,15 @@ class Admin extends CI_Controller {
     // $this->load->view('templates/footer');
   }
 
+  public function cargar(){
+    if ($_SESSION['user_logged'] == FALSE) {
+        $this->session->set_flashdata("error","Favor de ingresar credenciales");
+        redirect('admin/Login');
+    }
+    // $data['registros'] = $this->Calificacion_model->getRegistros();
+    $this->load->view('admin/cargar_archivos');
+  }
+
   public function Login() {
       $this->load->view('login/login_view');
   }

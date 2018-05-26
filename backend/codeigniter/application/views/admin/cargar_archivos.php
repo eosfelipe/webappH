@@ -164,7 +164,7 @@
         <li class="breadcrumb-item">
           <a href="#">Dashboard</a>
         </li>
-        <li class="breadcrumb-item active">Ordenes de servicio</li>
+        <li class="breadcrumb-item active">Cargar reporte de Auto-</li>
       </ol>
       <div class="row" id="sandbox-container">
         <div class="col-md-4 offset-md-8">
@@ -183,63 +183,12 @@
         <?php echo form_close() ?>
         </div>
       </div>
-      <!-- Example DataTables Card-->
-      <div class="card mb-3">
-        <div class="card-header">
-          <!-- <i class="fa fa-table"></i> Ordenes de servicio del <?php #echo date('d').' de mayo'?> -->
-        </div>
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-              <thead>
-                <tr>
-                  <th>#Orden de servicio</th>
-                  <th>Cal 1</th>
-                  <th>Cal 2</th>
-                  <th>Cal 3</th>
-                  <th>Cal 4</th>
-                  <th>Cal 5</th>
-                  <th>Cal 6</th>
-                  <th>Cal 7</th>
-                  <th>Fecha</th>
-                  <th>Promedio</th>
-                </tr>
-              </thead>
-              <tfoot>
-                <tr>
-                  <th>#Orden de servicio</th>
-                  <th>Cal 1</th>
-                  <th>Cal 2</th>
-                  <th>Cal 3</th>
-                  <th>Cal 4</th>
-                  <th>Cal 5</th>
-                  <th>Cal 6</th>
-                  <th>Cal 7</th>
-                  <th>Fecha</th>
-                  <th>Promedio</th>
-                </tr>
-              </tfoot>
-              <tbody>
-                <?php foreach($registros as $e):?>
-                <tr>
-                  <td><?php echo $e->orden_servicio?></td>
-                  <td><?php echo $e->p1?></td>
-                  <td><?php echo $e->p2?></td>
-                  <td><?php echo $e->p3?></td>
-                  <td><?php echo $e->p4?></td>
-                  <td><?php echo $e->p5?></td>
-                  <td><?php echo $e->p6?></td>
-                  <td><?php echo $e->p7?></td>
-                  <td><?php echo $e->fecha?></td>
-                  <td><?php echo round(($e->p1+$e->p2+$e->p3+$e->p4+$e->p5+$e->p6+$e->p7)/7,1)?></td>
-                </tr>
-                <?php endforeach;?>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class="card-footer small text-muted"><?php echo date('d-m-Y')?></div>
+
+      <div class="custom-file">
+        <input type="file" class="custom-file-input" id="customFileLang" lang="es">
+        <label class="custom-file-label" for="customFileLang">Seleccionar Archivo</label>
       </div>
+      
     </div>
     <!-- /.container-fluid-->
     <!-- /.content-wrapper-->
