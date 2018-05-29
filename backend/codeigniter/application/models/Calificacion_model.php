@@ -14,8 +14,6 @@ class Calificacion_model extends CI_Model {
   public $p7;
   public $fecha;
 
-  public $hoy;
-
   public function set_data( $data ){
     date_default_timezone_set('America/Mexico_City');
     foreach ($data as $nombre_campo => $valor_campo) {
@@ -55,9 +53,9 @@ class Calificacion_model extends CI_Model {
   }
 
   public function getRegistros(){
-    $this->hoy = date('Y-m-d');
+    $hoy = date('Y-m-d');
     // $this->db->like('fecha', $hoy, 'both');
-    $query = $this->db->query('select * from calificacion where fecha like "%'.$this->hoy.'%"');
+    $query = $this->db->query('select * from calificacion where fecha like "%'.$hoy.'%"');
     return $query->result();
   }
 

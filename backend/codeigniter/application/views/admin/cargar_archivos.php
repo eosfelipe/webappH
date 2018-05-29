@@ -18,6 +18,8 @@
   <link href="<?php echo base_url()?>assets/css/sb-admin.css" rel="stylesheet">
   <link href="<?php echo base_url()?>assets/css/bootstrap-datepicker.min.css" rel="stylesheet">
   <link href="<?php echo base_url()?>assets/css/styles.css" rel="stylesheet">
+  <!--Fileinput-->
+  <link href="<?php echo base_url()?>assets/fileinput/css/fileinput.min.css" rel="stylesheet">
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark sidenav-toggled" id="page-top">
@@ -184,11 +186,8 @@
         </div>
       </div>
 
-      <div class="custom-file">
-        <input type="file" class="custom-file-input" id="customFileLang" lang="es">
-        <label class="custom-file-label" for="customFileLang">Seleccionar Archivo</label>
-      </div>
-      
+      <input id="input-id" type="file" class="file" data-preview-file-type="text" >
+
     </div>
     <!-- /.container-fluid-->
     <!-- /.content-wrapper-->
@@ -265,6 +264,10 @@
     <script src="<?php echo base_url()?>assets/js/dataTables.buttons.min.js"></script>
     <script src="<?php echo base_url()?>assets/js/bootstrap-datepicker.min.js"></script>
     <script src="<?php echo base_url()?>assets/js/bootstrap-datepicker.es.min.js"></script>
+    <script src="<?php echo base_url()?>assets/fileinput/js/purify.min.js"></script>
+    <script src="<?php echo base_url()?>assets/fileinput/js/fileinput.min.js"></script>
+    <script src="<?php echo base_url()?>assets/fileinput/js/theme.min.js"></script>
+    <script src="<?php echo base_url()?>assets/fileinput/js/es.js"></script>
     <script src="<?php echo base_url()?>assets/js/main.js"></script>
   </div>
 </body>
