@@ -104,7 +104,8 @@ function insertarBD(datos){
       })
     }
   })
-  .fail(function(){
+  .fail(function(response){
+    console.log(response);
     console.error('Ocurrio un error');
   })
   .always(function(){

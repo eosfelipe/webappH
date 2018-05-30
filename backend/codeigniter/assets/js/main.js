@@ -15,10 +15,3 @@ $('#datePM .input-daterange').datepicker({
     todayHighlight: true
 });
 $('.alert').alert();
-
-$('#input-id').fileinput({
-        theme: 'fa',
-        language: 'es',
-        uploadUrl: '#',
-        allowedFileExtensions: ['jpg', 'png', 'gif']
-    });

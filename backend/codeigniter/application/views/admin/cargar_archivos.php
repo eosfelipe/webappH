@@ -186,7 +186,11 @@
         </div>
       </div>
 
-      <input id="input-id" type="file" class="file" data-preview-file-type="text" >
+      <?php echo form_open_multipart('upload/do_upload');?>
+        <input id="input-id" type="file" class="file" name="file[]" data-preview-file-type="text" >
+        <small class="form-text text-muted">Seleccionar reporte a cargar</small>
+      </form>
+
 
     </div>
     <!-- /.container-fluid-->
@@ -269,6 +273,22 @@
     <script src="<?php echo base_url()?>assets/fileinput/js/theme.min.js"></script>
     <script src="<?php echo base_url()?>assets/fileinput/js/es.js"></script>
     <script src="<?php echo base_url()?>assets/js/main.js"></script>
+    <script>
+    $('#input-id').fileinput({
+            theme: 'fa',
+            language: 'es',
+            uploadUrl: 'http://localhost/webappH/backend/codeigniter/index.php/upload/do_upload',
+            allowedFileExtensions: ['csv'],
+            maxFileSize: 100,
+            maxFileCount: 1,
+            uploadAsync: false
+        });
+    $('#input-id').on('filebatchuploadsuccess', function(event, data) {
+      var form = data.form, files = data.files, extra = data.extra,
+      response = data.response, reader = data.reader;
+      console.log(response);
+    });
+    </script>
   </div>
 </body>
 
