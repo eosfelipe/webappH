@@ -37,8 +37,14 @@
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Cargar Reporte">
           <a class="nav-link" href="<?php echo site_url('admin/cargar') ?>">
-            <i class="fa fa-fw fa-file"></i>
+            <i class="fa fa-fw fa-file-excel-o"></i>
             <span class="nav-link-text">Cargar Reporte</span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Ver Reporte">
+          <a class="nav-link" href="<?php echo site_url('admin/verReporte') ?>">
+            <i class="fa fa-fw fa-file"></i>
+            <span class="nav-link-text">Ver Reporte</span>
           </a>
         </li>
       </ul>

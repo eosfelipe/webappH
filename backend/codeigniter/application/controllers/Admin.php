@@ -9,6 +9,7 @@ class Admin extends CI_Controller {
     $this->load->library('session');
     $this->load->database();
     $this->load->model('Calificacion_model');
+    $this->load->model('Reporte_model');
   }
 
   public function index(){
@@ -29,6 +30,15 @@ class Admin extends CI_Controller {
     }
     // $data['registros'] = $this->Calificacion_model->getRegistros();
     $this->load->view('admin/cargar_archivos');
+  }
+
+  public function verReporte(){
+    if ($_SESSION['user_logged'] == FALSE) {
+        $this->session->set_flashdata("error","Favor de ingresar credenciales");
+        redirect('admin/Login');
+    }
+    $data['registros'] = $this->Reporte_model->getRegistros();
+    $this->load->view('admin/ver_reporte',$data);
   }
 
   public function Login() {
@@ -75,4 +85,10 @@ class Admin extends CI_Controller {
       //No hay else siempre llega $_POST
     }
   }
+
+  // public function limpiarCampo(){
+  //   $data['registros'] = $this->Reporte_model->getOrden();
+  //   print_r($data['registros']);
+  //   $this->load->view('admin/ver_reporte',$data);
+  // }
 }

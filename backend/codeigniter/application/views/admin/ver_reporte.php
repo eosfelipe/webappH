@@ -18,8 +18,6 @@
   <link href="<?php echo base_url()?>assets/css/sb-admin.css" rel="stylesheet">
   <link href="<?php echo base_url()?>assets/css/bootstrap-datepicker.min.css" rel="stylesheet">
   <link href="<?php echo base_url()?>assets/css/styles.css" rel="stylesheet">
-  <!--Fileinput-->
-  <link href="<?php echo base_url()?>assets/fileinput/css/fileinput.min.css" rel="stylesheet">
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark sidenav-toggled" id="page-top">
@@ -172,15 +170,70 @@
         <li class="breadcrumb-item">
           <a href="#">Dashboard</a>
         </li>
-        <li class="breadcrumb-item active">Cargar reporte de Auto-</li>
+        <li class="breadcrumb-item active">Ver reporte</li>
       </ol>
-
-      <?php echo form_open_multipart('upload/do_upload');?>
-        <input id="input-id" type="file" class="file" name="file[]" data-preview-file-type="text" >
-        <small class="form-text text-muted">Seleccionar reporte a cargar</small>
-      </form>
-
-
+      <!-- <div class="row" id="sandbox-container">
+        <div class="col-md-4 offset-md-8">
+        <?php #echo form_open('admin/BuscarFecha') ?>
+        <div class="form-group">
+          <div class="input-daterange input-group input-group-sm mb-3" id="datepicker">
+            <label for="f">Fecha: </label>
+            <input type="text" class="form-control" name="fechaInicial" value="<?php #echo isset($fi) ? $fi : date('d-m-Y')?>">
+            <span class="input-group-addon">a</span>
+            <input type="text" class="form-control" name="fechaFinal" value="<?php #echo isset($ff) ? $ff : date('d-m-Y')?>">
+            <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-fw fa-search"></i></button>
+            <a class="btn btn-primary btn-sm" href="#" data-toggle="modal" data-target="#exportarModal"><i class="fa fa-fw fa-file-excel-o"></i></a>
+          </div>
+        </div>
+        <?php #echo form_close() ?>
+        </div>
+      </div> -->
+      <!-- Example DataTables Card-->
+      <div class="card mb-3">
+        <div class="card-header">
+          <!-- <i class="fa fa-table"></i> Ordenes de servicio del <?php #echo date('d').' de mayo'?> -->
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTableR" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <!-- <th>DISTRIB</th>
+                  <th>RAZON</th>
+                  <th>CIUCLIEN</th>
+                  <th>NUMSERIE</th>
+                  <th>TIPORDEN</th> -->
+                  <th>OPER1</th>
+                  <th>ORDEN</th>
+                  <th>CLIENTE</th>
+                  <!-- <th>TELCASA</th>
+                  <th>TELOFIC</th> -->
+                  <th>TELCEL</th>
+                  <th>EMAIL</th>
+                  <th>ASESOR</th>
+                  <!-- <th>RFCASESOR</th> -->
+                  <th>DESCRIP</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php foreach($registros as $e):?>
+                <tr>
+                  <?php #var_dump(ltrim($e->orden,'N000'))?>
+                  <td><?php echo $e->OPER1 ?></td>
+                  <td><?php echo $e->ORDEN ?></td>
+                  <td><?php echo $e->CLIENTE ?></td>
+                  <td><?php echo $e->TELCEL ?></td>
+                  <td><?php echo $e->EMAIL ?></td>
+                  <td><?php echo $e->ASESOR ?></td>
+                  <td><?php echo $e->DESCRIP ?></td>
+                </tr>
+                <?php endforeach;?>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card-footer small text-muted"><?php echo date('d-m-Y')?></div>
+      </div>
     </div>
     <!-- /.container-fluid-->
     <!-- /.content-wrapper-->
@@ -213,6 +266,35 @@
         </div>
       </div>
     </div>
+    <!-- Exportar Modal-->
+    <div class="modal fade" id="exportarModal" tabindex="-1" role="dialog" aria-labelledby="exportarModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content" id="datePM">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exportarModalLabel">Exportar registros</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <?php echo form_open('admin/Exportar') ?>
+          <div class="modal-body">
+            <div class="form-group">
+              <div class="input-daterange input-group input-group-sm mb-3" id="datepicker">
+                <label for="f">Fecha: </label>
+                <input type="text" class="form-control" name="fechaInicial" value="<?php echo isset($fi) ? $fi : date('d-m-Y')?>">
+                <span class="input-group-addon">a</span>
+                <input type="text" class="form-control" name="fechaFinal" value="<?php echo isset($ff) ? $ff : date('d-m-Y')?>">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Aceptar</button>
+          </div>
+          <?php echo form_close() ?>
+        </div>
+      </div>
+    </div>
     <!-- Bootstrap core JavaScript-->
     <script src="<?php echo base_url()?>assets/jquery/jquery.min.js"></script>
     <script src="<?php echo base_url()?>assets/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -228,30 +310,7 @@
     <script src="<?php echo base_url()?>assets/js/dataTables.buttons.min.js"></script>
     <script src="<?php echo base_url()?>assets/js/bootstrap-datepicker.min.js"></script>
     <script src="<?php echo base_url()?>assets/js/bootstrap-datepicker.es.min.js"></script>
-    <script src="<?php echo base_url()?>assets/fileinput/js/purify.min.js"></script>
-    <script src="<?php echo base_url()?>assets/fileinput/js/fileinput.min.js"></script>
-    <script src="<?php echo base_url()?>assets/fileinput/js/theme.min.js"></script>
-    <script src="<?php echo base_url()?>assets/fileinput/js/es.js"></script>
     <script src="<?php echo base_url()?>assets/js/main.js"></script>
-    <script>
-    $('#input-id').fileinput({
-            theme: 'fa',
-            language: 'es',
-            uploadUrl: 'http://localhost:8080/hyundai/backend/codeigniter/index.php/upload/do_upload',
-            allowedFileExtensions: ['csv'],
-            maxFileSize: 100,
-            maxFileCount: 1,
-            uploadAsync: false
-        });
-    $('#input-id').on('filebatchuploadsuccess', function(event, data) {
-      var form = data.form, files = data.files, extra = data.extra,
-      response = data.response, reader = data.reader;
-      console.log(response);
-      if(response.exito){
-        setTimeout(function(){location.reload()},3000);
-      }
-    });
-    </script>
   </div>
 </body>
 

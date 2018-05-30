@@ -61,6 +61,7 @@ class Upload extends CI_Controller {
       if(isset($last_id)){
         $respuestas = array();
         $respuestas = ['count' => $count, 'last_id' => $last_id, 'exito'=>true];
+        $this->session->set_flashdata("success","Archivo cargado correctamente.");
       }
     }
     elseif($estado_proceso === false){
