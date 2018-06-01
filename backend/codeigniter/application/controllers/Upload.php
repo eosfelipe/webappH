@@ -50,6 +50,7 @@ class Upload extends CI_Controller {
 
     $respuestas = array();
     if($estado_proceso === true){
+      $this->db->truncate('reporte');
       //procesar archivo en la bd
       // print_r($this->csv_to_array($archivo_destino));
       $data = $this->csv_to_array($archivo_destino);

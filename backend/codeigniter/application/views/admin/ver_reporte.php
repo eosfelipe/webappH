@@ -172,22 +172,11 @@
         </li>
         <li class="breadcrumb-item active">Ver reporte</li>
       </ol>
-      <!-- <div class="row" id="sandbox-container">
-        <div class="col-md-4 offset-md-8">
-        <?php #echo form_open('admin/BuscarFecha') ?>
-        <div class="form-group">
-          <div class="input-daterange input-group input-group-sm mb-3" id="datepicker">
-            <label for="f">Fecha: </label>
-            <input type="text" class="form-control" name="fechaInicial" value="<?php #echo isset($fi) ? $fi : date('d-m-Y')?>">
-            <span class="input-group-addon">a</span>
-            <input type="text" class="form-control" name="fechaFinal" value="<?php #echo isset($ff) ? $ff : date('d-m-Y')?>">
-            <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-fw fa-search"></i></button>
-            <a class="btn btn-primary btn-sm" href="#" data-toggle="modal" data-target="#exportarModal"><i class="fa fa-fw fa-file-excel-o"></i></a>
-          </div>
+      <div class="row" id="exportarMatch">
+        <div class="col-md-2 offset-md-10">
+        <a style="margin-bottom:10px;" class="btn btn-primary btn-sm" href="#" data-toggle="modal" data-target="#exportarModal"><i class="fa fa-fw fa-file-excel-o"></i>Exportar reporte</a>
         </div>
-        <?php #echo form_close() ?>
-        </div>
-      </div> -->
+      </div>
       <!-- Example DataTables Card-->
       <div class="card mb-3">
         <div class="card-header">
@@ -198,34 +187,25 @@
             <table class="table table-bordered" id="dataTableR" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                  <!-- <th>DISTRIB</th>
-                  <th>RAZON</th>
-                  <th>CIUCLIEN</th>
-                  <th>NUMSERIE</th>
-                  <th>TIPORDEN</th> -->
-                  <th>OPER1</th>
                   <th>ORDEN</th>
                   <th>CLIENTE</th>
-                  <!-- <th>TELCASA</th>
-                  <th>TELOFIC</th> -->
                   <th>TELCEL</th>
                   <th>EMAIL</th>
                   <th>ASESOR</th>
-                  <!-- <th>RFCASESOR</th> -->
                   <th>DESCRIP</th>
+                  <th>Encuesta</th>
                 </tr>
               </thead>
               <tbody>
                 <?php foreach($registros as $e):?>
-                <tr>
-                  <?php #var_dump(ltrim($e->orden,'N000'))?>
-                  <td><?php echo $e->OPER1 ?></td>
+                  <?php echo isset($e->orden_servicio) ? '<tr class="table-success">':'<tr class="table-danger">'?>
                   <td><?php echo $e->ORDEN ?></td>
                   <td><?php echo $e->CLIENTE ?></td>
                   <td><?php echo $e->TELCEL ?></td>
                   <td><?php echo $e->EMAIL ?></td>
                   <td><?php echo $e->ASESOR ?></td>
                   <td><?php echo $e->DESCRIP ?></td>
+                  <td><?php echo isset($e->orden_servicio) ? '<i class="fa fa-check-circle-o" aria-hidden="true"></i>':'<i class="fa fa-times-circle-o" aria-hidden="true"></i>' ?></td>
                 </tr>
                 <?php endforeach;?>
               </tbody>
@@ -271,20 +251,15 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content" id="datePM">
           <div class="modal-header">
-            <h5 class="modal-title" id="exportarModalLabel">Exportar registros</h5>
+            <h5 class="modal-title" id="exportarModalLabel">Exportar reporte</h5>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <?php echo form_open('admin/Exportar') ?>
+          <?php echo form_open('admin/ExportarReporte') ?>
           <div class="modal-body">
             <div class="form-group">
-              <div class="input-daterange input-group input-group-sm mb-3" id="datepicker">
-                <label for="f">Fecha: </label>
-                <input type="text" class="form-control" name="fechaInicial" value="<?php echo isset($fi) ? $fi : date('d-m-Y')?>">
-                <span class="input-group-addon">a</span>
-                <input type="text" class="form-control" name="fechaFinal" value="<?php echo isset($ff) ? $ff : date('d-m-Y')?>">
-              </div>
+              <input type="hidden" name="er" value="1">
             </div>
           </div>
           <div class="modal-footer">

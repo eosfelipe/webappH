@@ -20,7 +20,7 @@ class Calificacion_model extends CI_Model {
       if( property_exists('Calificacion_model',$nombre_campo) ){
         $this->$nombre_campo = $valor_campo;
       }
-      $this->orden_servicio = $data['ordenServicio'];
+      $this->orden_servicio = trim($data['ordenServicio']);
       $this->p1 = $data['pregunta1'];
       $this->p2 = $data['pregunta2'];
       $this->p3 = $data['pregunta3'];
