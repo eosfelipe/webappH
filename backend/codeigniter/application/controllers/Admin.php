@@ -86,6 +86,20 @@ class Admin extends CI_Controller {
     }
   }
 
+  public function ExportarReporte(){
+    if(isset($_POST['er'])){
+      $res = $this->Reporte_model->exportar();
+      if($res){
+        $this->session->set_flashdata("success","<strong>¡Archivo exportado!</strong>");
+        redirect('admin/index');
+      }
+      else{
+        $this->session->set_flashdata("error","Algo salió mal, archivo no exportado");
+        redirect('admin/index');
+      }
+    }
+  }
+
   // public function limpiarCampo(){
   //   $data['registros'] = $this->Reporte_model->getOrden();
   //   print_r($data['registros']);

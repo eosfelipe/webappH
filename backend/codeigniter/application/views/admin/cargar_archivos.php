@@ -239,7 +239,7 @@
             language: 'es',
             uploadUrl: 'http://localhost:8080/hyundai/backend/codeigniter/index.php/upload/do_upload',
             allowedFileExtensions: ['csv'],
-            maxFileSize: 200,
+            maxFileSize: 500,
             maxFileCount: 1,
             uploadAsync: false
         });
