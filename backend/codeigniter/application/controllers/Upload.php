@@ -55,7 +55,7 @@ class Upload extends CI_Controller {
       // print_r($this->csv_to_array($archivo_destino));
       $data = $this->csv_to_array($archivo_destino);
       $count = count($data);
-      $this->db->insert_batch('reporte', $data);
+      $this->db->insert_batch("reporte", $data);
       $first_id = $this->db->insert_id();
       $last_id = $first_id + ($count-1);
 

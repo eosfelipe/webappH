@@ -170,7 +170,7 @@
         <li class="breadcrumb-item">
           <a href="#">Dashboard</a>
         </li>
-        <li class="breadcrumb-item active">Ver reporte</li>
+        <li class="breadcrumb-item active">Comparación reporte AutoTec vs Encuestas a clientes</li>
       </ol>
       <div class="row" id="exportarMatch">
         <div class="col-md-2 offset-md-10">
@@ -197,16 +197,19 @@
                 </tr>
               </thead>
               <tbody>
+                <?php echo count($registros)?>
                 <?php foreach($registros as $e):?>
-                  <?php echo isset($e->orden_servicio) ? '<tr class="table-success">':'<tr class="table-danger">'?>
-                  <td><?php echo $e->ORDEN ?></td>
-                  <td><?php echo $e->CLIENTE ?></td>
-                  <td><?php echo $e->TELCEL ?></td>
-                  <td><?php echo $e->EMAIL ?></td>
-                  <td><?php echo $e->ASESOR ?></td>
-                  <td><?php echo $e->DESCRIP ?></td>
-                  <td><?php echo isset($e->orden_servicio) ? '<i class="fa fa-check-circle-o" aria-hidden="true"></i>':'<i class="fa fa-times-circle-o" aria-hidden="true"></i>' ?></td>
-                </tr>
+                  <?php if(isset($e->orden_servicio)):?>
+                  <tr>
+                    <td><?php echo $e->ORDEN ?></td>
+                    <td><?php echo $e->CLIENTE ?></td>
+                    <td><?php echo $e->TELCEL ?></td>
+                    <td><?php echo $e->EMAIL ?></td>
+                    <td><?php echo $e->ASESOR ?></td>
+                    <td><?php echo $e->DESCRIP ?></td>
+                    <td><?php echo isset($e->orden_servicio) ? '<i class="fa fa-check-circle-o" aria-hidden="true"></i>':'<i class="fa fa-times-circle-o" aria-hidden="true"></i>' ?></td>
+                  </tr>
+                  <?php endif;?>
                 <?php endforeach;?>
               </tbody>
             </table>
