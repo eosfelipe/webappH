@@ -55,9 +55,14 @@ class Upload extends CI_Controller {
       // print_r($this->csv_to_array($archivo_destino));
       $data = $this->csv_to_array($archivo_destino);
       $count = count($data);
-      $this->db->insert_batch("reporte", $data);
-      $first_id = $this->db->insert_id();
-      $last_id = $first_id + ($count-1);
+      if($this->db->insert_batch("reporte", $data) > 0){
+        $first_id = $this->db->insert_id();
+        $last_id = $first_id + ($count-1);
+      }
+      else if($this->db->insert_batch("reporte", $data) === FALSE ){
+        $this->session->set_flashdata("error","Error al procesar el archivo, validar que sea .csv válido.");
+        $respuestas = ['exito' => false];
+      }
 
       if(isset($last_id)){
         $respuestas = array();

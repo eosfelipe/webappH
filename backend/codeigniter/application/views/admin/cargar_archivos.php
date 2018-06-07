@@ -250,6 +250,9 @@
       if(response.exito){
         setTimeout(function(){location.reload()},3000);
       }
+      else{
+        setTimeout(function(){location.reload()},3000);
+      }
     });
     </script>
   </div>

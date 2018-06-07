@@ -103,6 +103,12 @@ function insertarBD(datos){
         window.location.reload();
       })
     }
+    else{
+      swal("ERROR, la orden de servicio ingresada ya existe","","error")
+      .then(function(){
+        window.location.reload();
+      })
+    }
   })
   .fail(function(response){
     console.log(response);

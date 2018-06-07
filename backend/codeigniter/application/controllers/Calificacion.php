@@ -15,7 +15,8 @@ class Calificacion extends CI_Controller {
       if(is_object($ordenS)){
         $respuesta = $ordenS->insert();
         if( $respuesta['err'] ){
-          echo 'mal';
+          echo $respuesta['mensaje'];
+          echo $respuesta['mensaje2'];
         }else{
           echo 'ok';
         }

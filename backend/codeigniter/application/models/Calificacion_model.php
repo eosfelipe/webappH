@@ -34,7 +34,19 @@ class Calificacion_model extends CI_Model {
   }
 
   public function insert(){
-    $hecho = $this->db->insert( 'calificacion', $this );
+    //validar que el # de orden sea unica
+    // si no exite insertar
+    if(!$this->is_exist($this)){
+      $hecho = $this->db->insert( 'calificacion', $this );
+    }else{
+      $hecho = false;
+      $respuesta = array(
+        'err'=>true,
+        'mensaje'=>'La orden de servicio ya existe'
+        // 'error'=>$this->db->_error_message(),
+        // 'error_num'=>$this->db->_error_number()
+      );
+    }
     if($hecho){
       $respuesta = array(
         'err'=>false,
@@ -42,14 +54,22 @@ class Calificacion_model extends CI_Model {
         'sucursal_id'=>$this->db->insert_id()
       );
     }else{
-      $respuesta = array(
-        'err'=>true,
-        'mensaje'=>'Error al insertar',
-        'error'=>$this->db->_error_message(),
-        'error_num'=>$this->db->_error_number()
-      );
+      $respuesta['mensaje2'] = 'Error al insertar';
+      // $respuesta = array(
+      //   'err'=>true,
+      //   'mensaje'=>'Error al insertar'
+      //   // 'error'=>$this->db->_error_message(),
+      //   // 'error_num'=>$this->db->_error_number()
+      // );
     }
     return $respuesta;
+  }
+
+  private function is_exist($data){
+    $this->db->where('orden_servicio',$data->orden_servicio);
+    $this->db->from('calificacion');
+    $count = $this->db->count_all_results();
+    return ($count > 0) ? true:false;
   }
 
   public function getRegistros(){
