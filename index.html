@@ -11,7 +11,7 @@
 		<link rel="stylesheet" href="materialize/css/materialize.min.css">
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/solarized.css">
+		<link rel="stylesheet" href="css/theme/white.css">
 		<link rel="stylesheet" href="css/style.css">
 
 		<!-- Theme used for syntax highlighting of code -->
@@ -36,10 +36,12 @@
 								<span id="os">Orden de servicio: </span>
 								<span id="atendiendo"></span>
 							</div>
-							<!-- <div class="col l4 offset-l4 center-align">
-								<img class="responsive-img" src="assets/img/logo.png" alt="logo">
-							</div> -->
 						</div>
+						<!-- <div class="row">
+							<div class="col l6 offset-l6 right-align">
+								<img class="responsive-img" src="assets/img/hyundai_logo.png" alt="logo">
+							</div>
+						</div> -->
 					</div>
 					<section>
 						<h3>Orden de servicio</h3>
@@ -219,6 +221,19 @@
 						</div>
 					</section>
 					<section>
+						<h3>¿Le llamaron para avisar que su auto estuvo listo?*****</h3>
+						<div class="btn-group">
+							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta8" id="p8opc1" value="SI">
+							<label for="p8opc1">
+								<img src="assets/img/cal10.png" alt="">
+							</label>
+							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta8" id="p8opc2" value="NO">
+							<label for="p8opc2">
+								<img src="assets/img/cal2.png" alt="">
+							</label>
+						</div>
+					</section>
+					<section>
 						<h3>¿Qué tan probable es que regrese a realizar su servicio con nosotros?</h3>
 						<div class="btn-group">
 							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta7" id="p7opc1" value="10">
@@ -244,6 +259,42 @@
 						</div>
 					</section>
 					<section>
+						<h3 style="margin-top:150px;">Comentarios</h3>
+						<div class="row">
+							<div class="input-field col s6">
+								<select>
+									<option value="" disabled selected>Seleccionar categoría</option>
+									<option value="1">No contestan el teléfono</option>
+									<option value="2">Actitud del personal</option>
+									<option value="3">Disponibilidad de citas</option>
+									<option value="4">Caseta/Vigilante</option>
+									<option value="5">Recepción de la unidad</option>
+									<option value="6">Movilidad</option>
+									<option value="7">Seguimiento de orden</option>
+									<option value="8">Diagnóstico</option>
+									<option value="9">Pedido/Llegada de piezas</option>
+									<option value="10">Fecha de entrega</option>
+									<option value="11">Caja</option>
+									<option value="12">Entrega de unidad</option>
+									<option value="13">Explicación de trabajos</option>
+									<option value="14">Precio</option>
+									<option value="15">Trabajo incompleto</option>
+									<option value="16">Lavado</option>
+									<option value="17">No bien a la primera</option>
+									<option value="18">Instalaciones</option>
+									<option value="19">Refrigerios/Bebidas</option>
+									<option value="20">Otro</option>
+								</select>
+								<!-- <label>Seleccionar categoría</label> -->
+							</div>
+							<div class="input-field col s6">
+								<i class="material-icons prefix">mode_edit</i>
+								<textarea id="" name="" class="materialize-textarea"></textarea>
+								<!-- <label>ejemplo</label> -->
+							</div>
+						</div>
+					</section>
+					<section>
 						<!-- <h3>¡Gracias por su tiempo!</h3> -->
 						<button id="btnFinalizar" class="btn-large waves-effect waves-light" type="submit" name="action" onclick="finalizar(event)">
 							Finalizar
@@ -253,7 +304,6 @@
 					</section>
 				</div>
 			</form>
-
 		</div>
 
 		<script src="lib/js/head.min.js"></script>

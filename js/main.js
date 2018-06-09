@@ -1,5 +1,6 @@
 $(document).ready(function(){
   $('#os').hide();
+  $('select').formSelect();
 });
 function siguiente(e){
   // var valor = document.getElementById('opc1');
@@ -7,7 +8,7 @@ function siguiente(e){
   // console.log(pregunta);
   console.log(e.target.value);
   // console.log(pregunta[0].value);
-  if(obtenerLocal('numOrden') == null){
+  if(obtenerLocal('numOrden') === null){
     swal("No se ha ingresado número de orden","","warning")
     .then(function(){
       Reveal.prev();
@@ -73,7 +74,7 @@ function finalizar(event){
 
 function validarForm(r){
   const radio = r.find('input[type=radio]:checked');
-  if(radio.length < 7){
+  if(radio.length < 8){
     Reveal.configure({ controls: true });
     return false;
   }
@@ -104,7 +105,7 @@ function insertarBD(datos){
       })
     }
     else{
-      swal("ERROR, la orden de servicio ingresada ya existe","","error")
+      swal("ERROR, la orden de servicio " +obtenerLocal('numOrden')+" ya existe","","error")
       .then(function(){
         window.location.reload();
       })
