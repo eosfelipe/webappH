@@ -12,6 +12,9 @@ class Calificacion_model extends CI_Model {
   public $p5;
   public $p6;
   public $p7;
+  public $p8;
+  public $categoria;
+  public $comentarios;
   public $fecha;
 
   public function set_data( $data ){
@@ -28,6 +31,17 @@ class Calificacion_model extends CI_Model {
       $this->p5 = $data['pregunta5'];
       $this->p6 = $data['pregunta6'];
       $this->p7 = $data['pregunta7'];
+      $this->p8 = $data['pregunta8'];
+      if(isset($data['categoria'])){
+        $this->categoria = $data['categoria'];
+      }else{
+        $this->categoria = 'No respondió';
+      }
+      if(isset($data['comentarios'])){
+        $this->comentarios = trim($data['comentarios']);
+      }else{
+        $this->comentarios = '';
+      }
       $this->fecha = date('Y-m-d H:i:s');
     }
     return $this;

@@ -43,7 +43,7 @@
 							</div>
 						</div> -->
 					</div>
-					<section>
+					<section data-background="assets/img/hyundai_logo.png" data-background-position="50% 90%" data-background-size="300px">
 						<h3>Orden de servicio</h3>
 						<input class="input-field" type="text"
 									 name="ordenServicio" id="ordenServicio"
@@ -221,7 +221,7 @@
 						</div>
 					</section>
 					<section>
-						<h3>¿Le llamaron para avisar que su auto estuvo listo?*****</h3>
+						<h3>¿Le llamaron para avisar que su auto estuvo listo?</h3>
 						<div class="btn-group">
 							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta8" id="p8opc1" value="SI">
 							<label for="p8opc1">
@@ -259,42 +259,42 @@
 						</div>
 					</section>
 					<section>
-						<h3 style="margin-top:150px;">Comentarios</h3>
+						<h3>Comentarios (*opcional)</h3>
 						<div class="row">
-							<div class="input-field col s6">
-								<select>
+							<div class="input-field col s12 l6">
+								<select class="browser-default" name="categoria">
 									<option value="" disabled selected>Seleccionar categoría</option>
-									<option value="1">No contestan el teléfono</option>
-									<option value="2">Actitud del personal</option>
-									<option value="3">Disponibilidad de citas</option>
-									<option value="4">Caseta/Vigilante</option>
-									<option value="5">Recepción de la unidad</option>
-									<option value="6">Movilidad</option>
-									<option value="7">Seguimiento de orden</option>
-									<option value="8">Diagnóstico</option>
-									<option value="9">Pedido/Llegada de piezas</option>
-									<option value="10">Fecha de entrega</option>
-									<option value="11">Caja</option>
-									<option value="12">Entrega de unidad</option>
-									<option value="13">Explicación de trabajos</option>
-									<option value="14">Precio</option>
-									<option value="15">Trabajo incompleto</option>
-									<option value="16">Lavado</option>
-									<option value="17">No bien a la primera</option>
-									<option value="18">Instalaciones</option>
-									<option value="19">Refrigerios/Bebidas</option>
-									<option value="20">Otro</option>
+									<option value="No contestan el teléfono">No contestan el teléfono</option>
+									<option value="Actitud del personal">Actitud del personal</option>
+									<option value="Disponibilidad de citas">Disponibilidad de citas</option>
+									<option value="Caseta/Vigilante">Caseta/Vigilante</option>
+									<option value="Recepción de la unidad">Recepción de la unidad</option>
+									<option value="Movilidad">Movilidad</option>
+									<option value="Seguimiento de orden">Seguimiento de orden</option>
+									<option value="Diagnóstico">Diagnóstico</option>
+									<option value="Pedido/Llegada de piezas">Pedido/Llegada de piezas</option>
+									<option value="Fecha de entrega">Fecha de entrega</option>
+									<option value="Caja">Caja</option>
+									<option value="Entrega de unidad">Entrega de unidad</option>
+									<option value="Explicación de trabajos">Explicación de trabajos</option>
+									<option value="Precio">Precio</option>
+									<option value="Trabajo incompleto">Trabajo incompleto</option>
+									<option value="Lavado">Lavado</option>
+									<option value="No bien a la primera">No bien a la primera</option>
+									<option value="Instalaciones">Instalaciones</option>
+									<option value="Refrigerios/Bebidas">Refrigerios/Bebidas</option>
+									<option value="Otro">Otro</option>
 								</select>
 								<!-- <label>Seleccionar categoría</label> -->
 							</div>
-							<div class="input-field col s6">
+							<div class="input-field col s12 l6">
 								<i class="material-icons prefix">mode_edit</i>
-								<textarea id="" name="" class="materialize-textarea"></textarea>
-								<!-- <label>ejemplo</label> -->
+								<textarea id="" name="comentarios" class="materialize-textarea"></textarea>
+								<a id="btnContinuar" class="btn-large waves-effect waves-light" onclick="siguiente(event)">Continuar</a>
 							</div>
 						</div>
 					</section>
-					<section>
+					<section data-background="assets/img/hyundai_logo.png" data-background-position="50% 90%" data-background-size="300px">
 						<!-- <h3>¡Gracias por su tiempo!</h3> -->
 						<button id="btnFinalizar" class="btn-large waves-effect waves-light" type="submit" name="action" onclick="finalizar(event)">
 							Finalizar

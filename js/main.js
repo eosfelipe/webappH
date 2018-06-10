@@ -5,7 +5,7 @@ $(document).ready(function(){
 function siguiente(e){
   // var valor = document.getElementById('opc1');
   var pregunta = document.getElementsByClassName('input-hidden');
-  // console.log(pregunta);
+
   console.log(e.target.value);
   // console.log(pregunta[0].value);
   if(obtenerLocal('numOrden') === null){
@@ -63,6 +63,7 @@ function finalizar(event){
     $('#ordenForm').submit(function(event){
       event.preventDefault(event);
       console.log('valido');
+      console.log(respuestas.serialize());
       insertarBD(respuestas);
       // btnFinalizar.prop('disabled', false);
     })
