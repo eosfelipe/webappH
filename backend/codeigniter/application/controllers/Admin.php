@@ -99,10 +99,4 @@ class Admin extends CI_Controller {
       }
     }
   }
-
-  // public function limpiarCampo(){
-  //   $data['registros'] = $this->Reporte_model->getOrden();
-  //   print_r($data['registros']);
-  //   $this->load->view('admin/ver_reporte',$data);
-  // }
 }

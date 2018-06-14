@@ -207,6 +207,9 @@
                   <th>Cal 5</th>
                   <th>Cal 6</th>
                   <th>Cal 7</th>
+                  <th>Cal 8</th>
+                  <th>Categoría</th>
+                  <th>Comentarios</th>
                   <th>Fecha</th>
                   <th>Promedio</th>
                 </tr>
@@ -221,6 +224,9 @@
                   <th>Cal 5</th>
                   <th>Cal 6</th>
                   <th>Cal 7</th>
+                  <th>Cal 8</th>
+                  <th>Categoría</th>
+                  <th>Comentarios</th>
                   <th>Fecha</th>
                   <th>Promedio</th>
                 </tr>
@@ -235,7 +241,10 @@
                   <td><?php echo $e->p4?></td>
                   <td><?php echo $e->p5?></td>
                   <td><?php echo $e->p6?></td>
+                  <td><?php echo $e->p8?></td>
                   <td><?php echo $e->p7?></td>
+                  <td><?php echo $e->categoria?></td>
+                  <td><?php echo $e->comentarios?></td>
                   <td><?php echo $e->fecha?></td>
                   <td><?php echo round(($e->p1+$e->p2+$e->p3+$e->p4+$e->p5+$e->p6+$e->p7)/7,1)?></td>
                 </tr>

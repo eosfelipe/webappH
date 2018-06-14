@@ -91,6 +91,12 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
   padding: 0 60px;
 }
 
+#btnIniciar {
+  background-color: #1565c0 !important;
+  color: white;
+  padding: 0 60px;
+}
+
 select {
     padding: 0px !important;
     height: 4rem !important;

@@ -1,0 +1,335 @@
+<?php if(isset($_GET['orden'])):?>
+<?php $orden = base64_decode($_GET['orden'])?>
+<!doctype html>
+<html>
+	<head>
+		<!--dev felipe escobedo | felipe@majortom.space-->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Encuesta de servicio</title>
+
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link rel="stylesheet" href="materialize/css/materialize.min.css">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css">
+		<link rel="stylesheet" href="css/style.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<form id="ordenForm" action="/">
+				<div class="slides">
+					<div class="container main-title">
+						<div class="row">
+							<div class="col l12">
+								<span id="os">Orden de servicio: </span>
+								<span id="atendiendo"></span>
+							</div>
+						</div>
+						<!-- <div class="row">
+							<div class="col l6 offset-l6 right-align">
+								<img class="responsive-img" src="assets/img/hyundai_logo.png" alt="logo">
+							</div>
+						</div> -->
+					</div>
+					<section data-background="assets/img/hyundai_logo.png" data-background-position="50% 90%" data-background-size="300px">
+						<h3>Bienvenido</h3>
+            <a id="btnIniciar" class="btn-large waves-effect waves-light" onclick="iniciar2(event)">Iniciar</a>
+						<input type="hidden"
+									 name="ordenServicio" id="ordenServicio"
+									 value="<?php echo $orden?>">
+					</section>
+					<section>
+						<h3>¿Qué tan satisfecho está usted con el servicio de la agencia?</h3>
+						<div class="btn-group">
+							<label>
+								<input onclick="siguiente(event)" class="with-gap" type="radio" name="pregunta1" id="p1opc1" value="10">
+								<span class="custom-span">10</span>
+							</label>
+							<label>
+								<input onclick="siguiente(event)" class="with-gap" type="radio" name="pregunta1" id="p1opc2" value="9">
+								<span class="custom-span">9</span>
+							</label>
+							<label>
+								<input onclick="siguiente(event)" class="with-gap" type="radio" name="pregunta1" id="p1opc3" value="8">
+								<span class="custom-span">8</span>
+							</label>
+							<label>
+								<input onclick="siguiente(event)" class="with-gap" type="radio" name="pregunta1" id="p1opc4" value="7">
+								<span class="custom-span">7</span>
+							</label>
+							<label>
+								<input onclick="siguiente(event)" class="with-gap" type="radio" name="pregunta1" id="p1opc5" value="6">
+								<span class="custom-span">6</span>
+							</label>
+							<label>
+								<input onclick="siguiente(event)" class="with-gap" type="radio" name="pregunta1" id="p1opc6" value="5">
+								<span class="custom-span">5</span>
+							</label>
+							<label>
+								<input onclick="siguiente(event)" class="with-gap" type="radio" name="pregunta1" id="p1opc7" value="4">
+								<span class="custom-span">4</span>
+							</label>
+							<label>
+								<input onclick="siguiente(event)" class="with-gap" type="radio" name="pregunta1" id="p1opc8" value="3">
+								<span class="custom-span">3</span>
+							</label>
+							<label>
+								<input onclick="siguiente(event)" class="with-gap" type="radio" name="pregunta1" id="p1opc9" value="2">
+								<span class="custom-span">2</span>
+							</label>
+							<label>
+								<input onclick="siguiente(event)" class="with-gap" type="radio" name="pregunta1" id="p1opc10" value="1">
+								<span class="custom-span">1</span>
+							</label>
+						</div>
+					</section>
+					<section>
+						<h3>¿Cómo califica la atención y actitud de su asesor de servicio?</h3>
+						<div class="btn-group">
+							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta2" id="p2opc1" value="10">
+							<label for="p2opc1">
+								<img src="assets/img/cal10.png" alt="">
+							</label>
+							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta2" id="p2opc2" value="8">
+							<label for="p2opc2">
+								<img src="assets/img/cal8.png" alt="">
+							</label>
+							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta2" id="p2opc3" value="6">
+							<label for="p2opc3">
+								<img src="assets/img/cal6.png" alt="">
+							</label>
+							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta2" id="p2opc4" value="4">
+							<label for="p2opc4">
+								<img src="assets/img/cal4.png" alt="">
+							</label>
+							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta2" id="p2opc5" value="2">
+							<label for="p2opc5">
+								<img src="assets/img/cal2.png" alt="">
+							</label>
+						</div>
+					</section>
+					<section>
+						<h3>¿Fue fácil agendar una cita de servicio?</h3>
+						<div class="btn-group">
+							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta3" id="p3opc1" value="10">
+							<label for="p3opc1">
+								<img src="assets/img/cal10.png" alt="">
+							</label>
+							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta3" id="p3opc2" value="8">
+							<label for="p3opc2">
+								<img src="assets/img/cal8.png" alt="">
+							</label>
+							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta3" id="p3opc3" value="6">
+							<label for="p3opc3">
+								<img src="assets/img/cal6.png" alt="">
+							</label>
+							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta3" id="p3opc4" value="4">
+							<label for="p3opc4">
+								<img src="assets/img/cal4.png" alt="">
+							</label>
+							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta3" id="p3opc5" value="2">
+							<label for="p3opc5">
+								<img src="assets/img/cal2.png" alt="">
+							</label>
+						</div>
+					</section>
+					<section>
+						<h3>¿Le explicaron los trabajos que se realizaron a su Hyundai?</h3>
+						<div class="btn-group">
+							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta4" id="p4opc1" value="10">
+							<label for="p4opc1">
+								<img src="assets/img/cal10.png" alt="">
+							</label>
+							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta4" id="p4opc2" value="8">
+							<label for="p4opc2">
+								<img src="assets/img/cal8.png" alt="">
+							</label>
+							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta4" id="p4opc3" value="6">
+							<label for="p4opc3">
+								<img src="assets/img/cal6.png" alt="">
+							</label>
+							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta4" id="p4opc4" value="4">
+							<label for="p4opc4">
+								<img src="assets/img/cal4.png" alt="">
+							</label>
+							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta4" id="p4opc5" value="2">
+							<label for="p4opc5">
+								<img src="assets/img/cal2.png" alt="">
+							</label>
+						</div>
+					</section>
+					<section>
+						<h3>¿Qué tan satisfecho está usted con el trabajo realizado a su automóvil?</h3>
+						<div class="btn-group">
+							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta5" id="p5opc1" value="10">
+							<label for="p5opc1">
+								<img src="assets/img/cal10.png" alt="">
+							</label>
+							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta5" id="p5opc2" value="8">
+							<label for="p5opc2">
+								<img src="assets/img/cal8.png" alt="">
+							</label>
+							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta5" id="p5opc3" value="6">
+							<label for="p5opc3">
+								<img src="assets/img/cal6.png" alt="">
+							</label>
+							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta5" id="p5opc4" value="4">
+							<label for="p5opc4">
+								<img src="assets/img/cal4.png" alt="">
+							</label>
+							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta5" id="p5opc5" value="2">
+							<label for="p5opc5">
+								<img src="assets/img/cal2.png" alt="">
+							</label>
+						</div>
+					</section>
+					<section>
+						<h3>¿Entregamos su auto en el tiempo acordado?</h3>
+						<div class="btn-group">
+							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta6" id="p6opc1" value="10">
+							<label for="p6opc1">
+								<img src="assets/img/cal10.png" alt="">
+							</label>
+							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta6" id="p6opc2" value="8">
+							<label for="p6opc2">
+								<img src="assets/img/cal8.png" alt="">
+							</label>
+							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta6" id="p6opc3" value="6">
+							<label for="p6opc3">
+								<img src="assets/img/cal6.png" alt="">
+							</label>
+							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta6" id="p6opc4" value="4">
+							<label for="p6opc4">
+								<img src="assets/img/cal4.png" alt="">
+							</label>
+							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta6" id="p6opc5" value="2">
+							<label for="p6opc5">
+								<img src="assets/img/cal2.png" alt="">
+							</label>
+						</div>
+					</section>
+					<section>
+						<h3>¿Le llamaron para avisar que su auto estuvo listo?</h3>
+						<div class="btn-group">
+							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta8" id="p8opc1" value="SI">
+							<label for="p8opc1">
+								<img src="assets/img/cal10.png" alt="">
+							</label>
+							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta8" id="p8opc2" value="NO">
+							<label for="p8opc2">
+								<img src="assets/img/cal2.png" alt="">
+							</label>
+						</div>
+					</section>
+					<section>
+						<h3>¿Qué tan probable es que regrese a realizar su servicio con nosotros?</h3>
+						<div class="btn-group">
+							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta7" id="p7opc1" value="10">
+							<label for="p7opc1">
+								<img src="assets/img/cal10.png" alt="">
+							</label>
+							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta7" id="p7opc2" value="8">
+							<label for="p7opc2">
+								<img src="assets/img/cal8.png" alt="">
+							</label>
+							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta7" id="p7opc3" value="6">
+							<label for="p7opc3">
+								<img src="assets/img/cal6.png" alt="">
+							</label>
+							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta7" id="p7opc4" value="4">
+							<label for="p7opc4">
+								<img src="assets/img/cal4.png" alt="">
+							</label>
+							<input onclick="siguiente(event)" class="input-hidden" type="radio" name="pregunta7" id="p7opc5" value="2">
+							<label for="p7opc5">
+								<img src="assets/img/cal2.png" alt="">
+							</label>
+						</div>
+					</section>
+					<section>
+						<h3>Comentarios (*opcional)</h3>
+						<div class="row">
+							<div class="input-field col s12 l6">
+								<select class="browser-default" name="categoria">
+									<option value="" disabled selected>Seleccionar categoría</option>
+									<option value="No contestan el teléfono">No contestan el teléfono</option>
+									<option value="Actitud del personal">Actitud del personal</option>
+									<option value="Disponibilidad de citas">Disponibilidad de citas</option>
+									<option value="Caseta/Vigilante">Caseta/Vigilante</option>
+									<option value="Recepción de la unidad">Recepción de la unidad</option>
+									<option value="Movilidad">Movilidad</option>
+									<option value="Seguimiento de orden">Seguimiento de orden</option>
+									<option value="Diagnóstico">Diagnóstico</option>
+									<option value="Pedido/Llegada de piezas">Pedido/Llegada de piezas</option>
+									<option value="Fecha de entrega">Fecha de entrega</option>
+									<option value="Caja">Caja</option>
+									<option value="Entrega de unidad">Entrega de unidad</option>
+									<option value="Explicación de trabajos">Explicación de trabajos</option>
+									<option value="Precio">Precio</option>
+									<option value="Trabajo incompleto">Trabajo incompleto</option>
+									<option value="Lavado">Lavado</option>
+									<option value="No bien a la primera">No bien a la primera</option>
+									<option value="Instalaciones">Instalaciones</option>
+									<option value="Refrigerios/Bebidas">Refrigerios/Bebidas</option>
+									<option value="Otro">Otro</option>
+								</select>
+								<!-- <label>Seleccionar categoría</label> -->
+							</div>
+							<div class="input-field col s12 l6">
+								<i class="material-icons prefix">mode_edit</i>
+								<textarea id="" name="comentarios" class="materialize-textarea"></textarea>
+								<a id="btnContinuar" class="btn-large waves-effect waves-light" onclick="siguiente(event)">Continuar</a>
+							</div>
+						</div>
+					</section>
+					<section data-background="assets/img/hyundai_logo.png" data-background-position="50% 90%" data-background-size="300px">
+						<!-- <h3>¡Gracias por su tiempo!</h3> -->
+						<button id="btnFinalizar" class="btn-large waves-effect waves-light" type="submit" name="action" onclick="finalizar(event)">
+							Finalizar
+							<i class="material-icons right">send</i>
+						</button>
+						<div id="respuesta"></div>
+					</section>
+				</div>
+			</form>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+		<script src="js/jquery-3.3.1.min.js"></script>
+		<script src="materialize/js/materialize.min.js"></script>
+		<script src="js/sweetalert.min.js"></script>
+		<script src="js/main.js"></script>
+
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				controls: false,
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
+<?php endif?>

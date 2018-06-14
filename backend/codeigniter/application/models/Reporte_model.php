@@ -29,7 +29,15 @@ class Reporte_model extends CI_Model {
   }
 
   public function getOrden(){
-    $query = $this->db->query('select orden from reporte');
+    $query = $this->db->query('select c.orden_servicio,r.ORDEN,r.CLIENTE,r.EMAIL
+                                from reporte r
+                                left join calificacion c
+                                on r.orden like concat("%",c.orden_servicio,"%")');
+    return $query->result();
+  }
+
+  public function getCorreo($orden){
+    $query = $this->db->query('select orden, cliente, email from reporte where orden like "%'.$orden.'%"');
     return $query->result();
   }
 
@@ -37,7 +45,7 @@ class Reporte_model extends CI_Model {
     $this->load->dbutil();
     $this->load->helper('file');
     $this->load->helper('download');
-    $query = $this->db->query('select c.orden_servicio,c.fecha,c.p1,c.p2,c.p3,c.p4,c.p5,c.p6,c.p7,r.DISTRIB,r.RAZON,r.CIUCLIEN,r.NUMSERIE,r.TIPORDEN,r.OPER1,r.ORDEN,r.CLIENTE,r.TELCASA,r.TELOFIC,r.TELCEL,r.EMAIL,r.ASESOR,r.RFCASESOR,r.DESCRIP
+    $query = $this->db->query('select c.orden_servicio,c.fecha,c.p1,c.p2,c.p3,c.p4,c.p5,c.p6,c.p8,c.p7,c.categoria,c.comentarios,r.DISTRIB,r.RAZON,r.CIUCLIEN,r.NUMSERIE,r.TIPORDEN,r.OPER1,r.ORDEN,r.CLIENTE,r.TELCASA,r.TELOFIC,r.TELCEL,r.EMAIL,r.ASESOR,r.RFCASESOR,r.DESCRIP
                                 from reporte r
                                 left join calificacion c
                                 on r.orden like concat("%",c.orden_servicio,"%")');

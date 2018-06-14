@@ -177,43 +177,90 @@
         <a style="margin-bottom:10px;" class="btn btn-primary btn-sm" href="#" data-toggle="modal" data-target="#exportarModal"><i class="fa fa-fw fa-file-excel-o"></i>Exportar reporte</a>
         </div>
       </div>
-      <!-- Example DataTables Card-->
       <div class="card mb-3">
         <div class="card-header">
-          <!-- <i class="fa fa-table"></i> Ordenes de servicio del <?php #echo date('d').' de mayo'?> -->
+          <?php $cc=0; $sc=0; foreach($registros as $el){if(isset($el->orden_servicio)) $cc++;else $sc++;}?>
+          <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <a class="nav-item nav-link active" id="nav-cc-tab" data-toggle="tab" href="#nav-cc" role="tab" aria-controls="nav-cc" aria-selected="true">Orden con calificación <span class="badge badge-pill badge-primary"><?php echo $cc?></span></a>
+              <a class="nav-item nav-link" id="nav-sc-tab" data-toggle="tab" href="#nav-sc" role="tab" aria-controls="nav-sc" aria-selected="false">Orden sin calificación <span class="badge badge-pill badge-primary"><?php echo $sc?></span></a>
+              <a class="nav-item nav-link" id="nav-email-tab" data-toggle="tab" href="#nav-email" role="tab" aria-controls="nav-email" aria-selected="false">Enviar por correo</a>
+            </div>
+          </nav>
         </div>
         <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-bordered" id="dataTableR" width="100%" cellspacing="0">
-              <thead>
-                <tr>
-                  <th>ORDEN</th>
-                  <th>CLIENTE</th>
-                  <th>TELCEL</th>
-                  <th>EMAIL</th>
-                  <th>ASESOR</th>
-                  <th>DESCRIP</th>
-                  <th>Encuesta</th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php echo count($registros)?>
-                <?php foreach($registros as $e):?>
-                  <?php if(isset($e->orden_servicio)):?>
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-cc" role="tabpanel" aria-labelledby="nav-cc-tab">
+              <div class="table-responsive">
+              <table class="table table-bordered" id="dataTableR" width="100%" cellspacing="0">
+                <thead>
                   <tr>
-                    <td><?php echo $e->ORDEN ?></td>
-                    <td><?php echo $e->CLIENTE ?></td>
-                    <td><?php echo $e->TELCEL ?></td>
-                    <td><?php echo $e->EMAIL ?></td>
-                    <td><?php echo $e->ASESOR ?></td>
-                    <td><?php echo $e->DESCRIP ?></td>
-                    <td><?php echo isset($e->orden_servicio) ? '<i class="fa fa-check-circle-o" aria-hidden="true"></i>':'<i class="fa fa-times-circle-o" aria-hidden="true"></i>' ?></td>
+                    <th>ORDEN</th>
+                    <th>CLIENTE</th>
+                    <th>TELCEL</th>
+                    <th>EMAIL</th>
+                    <th>ASESOR</th>
+                    <th>DESCRIP</th>
+                    <th>Encuesta</th>
                   </tr>
-                  <?php endif;?>
-                <?php endforeach;?>
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  <?php foreach($registros as $e):?>
+                    <?php if(isset($e->orden_servicio)):?>
+                    <tr>
+                      <td><?php echo $e->ORDEN ?></td>
+                      <td><?php echo $e->CLIENTE ?></td>
+                      <td><?php echo $e->TELCEL ?></td>
+                      <td><?php echo $e->EMAIL ?></td>
+                      <td><?php echo $e->ASESOR ?></td>
+                      <td><?php echo $e->DESCRIP ?></td>
+                      <td><?php echo isset($e->orden_servicio) ? '<i class="fa fa-check-circle-o" aria-hidden="true"></i>':'<i class="fa fa-times-circle-o" aria-hidden="true"></i>' ?></td>
+                    </tr>
+                    <?php endif;?>
+                  <?php endforeach;?>
+                </tbody>
+              </table>
+            </div>
+            </div>
+            <div class="tab-pane fade" id="nav-sc" role="tabpanel" aria-labelledby="nav-sc-tab">
+              <div class="table-responsive">
+              <table class="table table-bordered" id="dataTableR2" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>ORDEN</th>
+                    <th>CLIENTE</th>
+                    <th>TELCEL</th>
+                    <th>EMAIL</th>
+                    <th>ASESOR</th>
+                    <th>DESCRIP</th>
+                    <th>Encuesta</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php foreach($registros as $e):?>
+                    <?php if(!isset($e->orden_servicio)):?>
+                    <tr>
+                      <td><?php echo $e->ORDEN ?></td>
+                      <td><?php echo $e->CLIENTE ?></td>
+                      <td><?php echo $e->TELCEL ?></td>
+                      <td><?php echo $e->EMAIL ?></td>
+                      <td><?php echo $e->ASESOR ?></td>
+                      <td><?php echo $e->DESCRIP ?></td>
+                      <td><?php echo isset($e->orden_servicio) ? '<i class="fa fa-check-circle-o" aria-hidden="true"></i>':'<i class="fa fa-times-circle-o" aria-hidden="true"></i>' ?></td>
+                    </tr>
+                    <?php endif;?>
+                  <?php endforeach;?>
+                </tbody>
+              </table>
+            </div>
+            </div>
+            <div class="tab-pane fade" id="nav-email" role="tabpanel" aria-labelledby="nav-email-tab">
+              <?php echo form_open('Correo/enviar') ?>
+              <input type="hidden" name="enviar_correo" value="1">
+              <button type="submit" class="btn btn-primary">Enviar encuesta</button>
+              <?php echo form_close() ?>
+            </div>
+          </div><!--Fin tab-content-->
         </div>
         <div class="card-footer small text-muted"><?php echo date('d-m-Y')?></div>
       </div>

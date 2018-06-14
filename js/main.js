@@ -38,6 +38,15 @@ function iniciar(e){
     console.log('no es enter');
   }
 }
+function iniciar2(e){
+  e.preventDefault();
+  var numOrden = document.getElementById('ordenServicio');
+  var atendiendo = document.getElementById("atendiendo");
+  agregarLocal('numOrden',numOrden);
+  $('#os').show();
+  atendiendo.innerHTML = obtenerLocal('numOrden');
+  Reveal.navigateRight();
+}
 
 // function finalizar(){
 //   $('#ordenForm').submit(function(event){
