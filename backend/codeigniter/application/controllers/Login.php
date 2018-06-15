@@ -37,7 +37,7 @@ class Login extends CI_Controller {
                 if ($usuario->usuario) {
 
                     //login message
-                    $this->session->set_flashdata("success","You are logged in");
+                    $this->session->set_flashdata("success","Inicio de sesión exitoso");
 
                     //set session variables
                     $_SESSION['user_logged'] = TRUE;

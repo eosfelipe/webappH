@@ -255,9 +255,16 @@
             </div>
             </div>
             <div class="tab-pane fade" id="nav-email" role="tabpanel" aria-labelledby="nav-email-tab">
+              <div class="alert alert-warning" role="alert">
+                <input id="sc" type="hidden" value="<?php echo $sc?>">
+                Al dar click en <strong>"Enviar encuesta"</strong> se enviaran <?php echo $sc?> correos, favor de esperar a ser redirigido a la página de nuevo.
+              </div>
+                <div class="progress" style="display:none;">
+                  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 1%"></div>
+                </div><br>
               <?php echo form_open('Correo/enviar') ?>
               <input type="hidden" name="enviar_correo" value="1">
-              <button type="submit" class="btn btn-primary">Enviar encuesta</button>
+              <button id="ee" type="submit" class="btn btn-primary" onclick="verBarra(event)">Enviar encuesta</button>
               <?php echo form_close() ?>
             </div>
           </div><!--Fin tab-content-->
@@ -336,6 +343,20 @@
     <script src="<?php echo base_url()?>assets/js/bootstrap-datepicker.min.js"></script>
     <script src="<?php echo base_url()?>assets/js/bootstrap-datepicker.es.min.js"></script>
     <script src="<?php echo base_url()?>assets/js/main.js"></script>
+    <script>
+    function verBarra(e){
+      $('.progress').show(function(){
+        tiempo = $('#sc').val();
+        i=1;
+        setInterval(function(){
+          $('.progress .progress-bar').css("width",function(){
+            if(i < tiempo) return i + "%";
+          });
+          i++;
+        },1000);
+      });
+    }
+    </script>
   </div>
 </body>
 

@@ -44,6 +44,7 @@ class Correo extends CI_Controller {
   public function enviar(){
     $orden = $this->filtrar();
     $count = count($orden);
+    $i = 0;
     foreach($orden as $e){
       $datos_cliente = $this->Reporte_model->getCorreo($e);
       $datos['link'] = base64_encode(substr($datos_cliente[0]->orden,4));
@@ -52,12 +53,18 @@ class Correo extends CI_Controller {
       // echo $datos_cliente[0]->cliente;
       // echo $datos_cliente[0]->email.'<br>';
       $this->email->clear();
-      $this->email->to($datos_cliente[0]->email);
+      // $this->email->to($datos_cliente[0]->email);
+      $this->email->to('escobedo.felipe@hotmail.com');
       $this->email->from('no-reply@hyundaimerida.com.mx');
       $this->email->subject('Por favor, Ayúdanos a mejorar nuestro servicio');
       $this->email->message($mensaje);
       if($this->email->send()){
+        $i++;
         echo 'correo enviado<br>';
+        while($i == $count){
+          $this->session->set_flashdata("success","¡Encuestas enviadas!");
+          redirect('admin/verReporte');
+        }
       }
     }
   }
