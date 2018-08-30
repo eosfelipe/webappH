@@ -23,8 +23,8 @@ function iniciar(e){
   if(charCode == 13){
     e.preventDefault();
     var numOrden = document.getElementById('ordenServicio');
-    if(numOrden.value.length <= 0){
-      swal("Favor de insertar su número de servicio", "", "warning");
+    if(numOrden.value.length < 5){
+      swal("Favor de insertar número de servicio válido", "", "warning");
     }
     else{
       var atendiendo = document.getElementById("atendiendo");

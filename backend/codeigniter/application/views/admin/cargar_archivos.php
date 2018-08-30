@@ -237,7 +237,7 @@
     $('#input-id').fileinput({
             theme: 'fa',
             language: 'es',
-            uploadUrl: 'http://localhost/webapph/backend/codeigniter/index.php/upload/do_upload',
+            uploadUrl: 'http://localhost:8080/hyundai/backend/codeigniter/index.php/upload/do_upload',
             allowedFileExtensions: ['csv'],
             maxFileSize: 500,
             maxFileCount: 1,

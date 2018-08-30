@@ -12,6 +12,7 @@ class Correo extends CI_Controller {
     $this->load->database();
     $this->load->model('Calificacion_model');
     $this->load->model('Reporte_model');
+    $this->load->model('Logs_model');
     $this->load->helper('email');
   }
 
@@ -55,7 +56,7 @@ class Correo extends CI_Controller {
       $this->email->clear();
       // $this->email->to($datos_cliente[0]->email);
       $this->email->to('escobedo.felipe@hotmail.com');
-      $this->email->from('no-reply@hyundaimerida.com.mx');
+      $this->email->from('no-reply@hyundaimerida.com.mx','Hyundai Mérida');
       $this->email->subject('Por favor, Ayúdanos a mejorar nuestro servicio');
       $this->email->message($mensaje);
       if($this->email->send()){
@@ -63,7 +64,15 @@ class Correo extends CI_Controller {
         echo 'correo enviado<br>';
         while($i == $count){
           $this->session->set_flashdata("success","¡Encuestas enviadas!");
-          redirect('admin/verReporte');
+          $this->Logs_model->insertar_log(1);
+          $this->email->clear();
+          $this->email->to('escobedo.felipe@hotmail.com');
+          $this->email->from('no-reply@hyundaimerida.com.mx','Hyundai Mérida');
+          $this->email->subject('AppHyundai envió encuestas');
+          $this->email->message('Se enviaron '.$i.' encuestas.');
+          if($this->email->send()){
+            redirect('admin/verReporte');
+          }//fin if
         }
       }
     }

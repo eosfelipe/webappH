@@ -2,6 +2,10 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller {
+  public function __construct(){
+    parent::__construct();
+    $this->load->model('Logs_model');
+  }
 
     public function loginUsuario() {
 
@@ -43,6 +47,7 @@ class Login extends CI_Controller {
                     $_SESSION['user_logged'] = TRUE;
                     $_SESSION['username'] = $usuario->usuario;
 
+                    $this->Logs_model->insertar_log(0);
                     //redirect
                     redirect('admin/index','refresh');
 

@@ -6,6 +6,7 @@ class Upload extends CI_Controller {
   public function __construct(){
     parent::__construct();
     $this->load->database();
+    $this->load->model('Logs_model');
   }
 
   public function do_upload(){
@@ -68,6 +69,7 @@ class Upload extends CI_Controller {
         $respuestas = array();
         $respuestas = ['count' => $count, 'last_id' => $last_id, 'exito'=>true];
         $this->session->set_flashdata("success","Archivo cargado correctamente.");
+        $this->Logs_model->insertar_log(2);
       }
     }
     elseif($estado_proceso === false){
