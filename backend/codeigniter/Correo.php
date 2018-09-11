@@ -51,31 +51,30 @@ class Correo extends CI_Controller {
       $datos['link'] = base64_encode(substr($datos_cliente[0]->orden,4));
 
       $mensaje = $this->load->view('correo/encuesta', $datos, TRUE);
-
-      if($i < $count ){
+      // echo $datos_cliente[0]->cliente;
+      // echo $datos_cliente[0]->email.'<br>';
+      $this->email->clear();
+      $this->email->to($datos_cliente[0]->email);
+      //$this->email->to('felipe@majortom.space');
+      $this->email->from('no-reply@forksem.com','Hyundai Mérida');
+      $this->email->subject('Por favor, Ayúdanos a mejorar nuestro servicio');
+      $this->email->message($mensaje);
+      if($this->email->send()){
         $i++;
-        $this->email->clear();
-        $this->email->to($datos_cliente[0]->email);
-        $this->email->from('no-reply@forksem.com','Hyundai Mérida');
-        $this->email->subject('Por favor, Ayúdanos a mejorar nuestro servicio');
-        $this->email->message($mensaje);
-        if($this->email->send()){
-          echo $i.' correo enviado<br>';
+        echo 'correo enviado<br>';
+        while($i == $count){
+          $this->session->set_flashdata("success","¡Encuestas enviadas!");
+          $this->Logs_model->insertar_log(1);
+          $this->email->clear();
+          $this->email->to('escobedo.felipe@hotmail.com');
+          $this->email->from('no-reply@forksem.com','Hyundai Mérida');
+          $this->email->subject('AppHyundai envió encuestas');
+          $this->email->message('Se enviaron '.$i.' encuestas.');
+          if($this->email->send()){
+            redirect('admin/verReporte');
+          }//fin if
         }
-      }//if
-    }//foreach
-    $this->session->set_flashdata("success","¡Encuestas enviadas!");
-    $this->enviarAviso();
-    $this->Logs_model->insertar_log(1);
-    redirect('admin/verReporte');
-  }
-
-  public function enviarAviso(){
-    $this->email->clear();
-    $this->email->to('escobedo.felipe@hotmail.com');
-    $this->email->from('no-reply@forksem.com','Aviso app');
-    $this->email->subject('AppHyundai envió encuestas');
-    $this->email->message('Se enviaron '.$i.' encuestas.');
-    $this->email->send();
+      }
+    }
   }
 }

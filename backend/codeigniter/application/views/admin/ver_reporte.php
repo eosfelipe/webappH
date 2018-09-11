@@ -347,10 +347,12 @@
     function verBarra(e){
       $('.progress').show(function(){
         tiempo = $('#sc').val();
+        console.log('tiempo: '+tiempo);
         i=1;
         setInterval(function(){
           $('.progress .progress-bar').css("width",function(){
             if(i < tiempo) return i + "%";
+            console.log('i: '+i);
           });
           i++;
         },1000);
